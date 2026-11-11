@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import GroupShuffleSplit
 
-from config import (
+from .config import (
     PROCESSED_DIR,
     RAW_PARQUET,
     SEED,

@@ -1,0 +1,8 @@
+{
+  "checkpoint_epoch": 4,
+  "checkpoint_val_macro_f1": 0.2135184917400967,
+  "test_loss": 1.487449150028782,
+  "test_accuracy": 0.547029941123343,
+  "test_macro_f1": 0.21547663185396537,
+  "test_examples": 644398
+}
