@@ -1,0 +1,13 @@
+# Workshop 1 - Machine Learning (Universidad Distrital)
+# Install with:
+#   python -m venv .venv
+#   .venv/Scripts/python.exe -m pip install -r requirements.txt   (Windows)
+#   .venv/bin/python -m pip install -r requirements.txt           (Linux/macOS)
+
+datasets==5.0.1          # downloading the dataset
+pandas==3.0.6            # data handling
+numpy==2.5.3             # numbers
+scikit-learn==1.9.1      # train/val/test split
+matplotlib==3.11.2       # plots
+ipykernel==7.3.0         # running the notebook
+nbconvert==7.17.1        # running the notebook from the command line

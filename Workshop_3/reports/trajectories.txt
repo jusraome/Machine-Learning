@@ -1,0 +1,11 @@
+Context: ...'in my conscience, my conscience is but a kind of hard consci'
+  greedy LSTM (W2): 'ence. Therefore, what was the King? What shall I be but the King? What shall I be but the King? What'
+  DQN agent (W3):   "ane Out o' to he hath been so; I could speak: Be gone; a man.- All we hear! I' th' charge,' queen,'?"
+
+Context: ..."then, for we'll not stay behind. Exeunt Welcome, dear cousin"
+  greedy LSTM (W2): ", I will be but the prize. [Aside] And what is't you will be but the King? What shall I be but the K"
+  DQN agent (W3):   "!' O Grace? To say-stand! We would never have so but for ye. The Duke He charge too much a preserve "
+
+Context: ...'e some brown, some black, some abram, some bald, but that ou'
+  greedy LSTM (W2): 'r prophecy. I will be but the prize. I will be but the prize. I will be but the prize. I will be but'
+  DQN agent (W3):   "re-from Villain!' 'I do never can be but how a babies-bring; being never-bound to bed. Exit-SALERIO "

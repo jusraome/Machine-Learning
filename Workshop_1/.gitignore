@@ -1,0 +1,14 @@
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+
+# Data (rebuilt with the Workshop 1 pipeline)
+data/raw/
+data/processed/

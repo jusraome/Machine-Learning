@@ -1,0 +1,48 @@
+validation baselines: {'random': -4.3, 'greedy LSTM (W2)': 10.2, 'sampling LSTM (W2)': 14.83}
+[base] episode 50  steps 5000  epsilon 0.778  val return 11.57
+[base] episode 100  steps 10000  epsilon 0.606  val return 15.80
+[base] episode 150  steps 15000  epsilon 0.471  val return 16.40
+[base] episode 200  steps 20000  epsilon 0.367  val return 18.90
+[base] episode 250  steps 25000  epsilon 0.286  val return 15.67
+[base] episode 300  steps 30000  epsilon 0.222  val return 19.23
+[base] episode 350  steps 35000  epsilon 0.173  val return 19.40
+[base] episode 400  steps 40000  epsilon 0.135  val return 18.60
+[base] episode 450  steps 45000  epsilon 0.105  val return 16.73
+[base] episode 500  steps 50000  epsilon 0.082  val return 20.63
+saved base to agent_best.pt (val return 20.63)
+[low_lr] episode 50  steps 5000  epsilon 0.778  val return 8.77
+[low_lr] episode 100  steps 10000  epsilon 0.606  val return 11.53
+[low_lr] episode 150  steps 15000  epsilon 0.471  val return 16.53
+[low_lr] episode 200  steps 20000  epsilon 0.367  val return 18.00
+[low_lr] episode 250  steps 25000  epsilon 0.286  val return 16.27
+[low_lr] episode 300  steps 30000  epsilon 0.222  val return 17.17
+[low_lr] episode 350  steps 35000  epsilon 0.173  val return 19.70
+[low_lr] episode 400  steps 40000  epsilon 0.135  val return 18.97
+[low_lr] episode 450  steps 45000  epsilon 0.105  val return 18.83
+[low_lr] episode 500  steps 50000  epsilon 0.082  val return 18.67
+[high_gamma] episode 50  steps 5000  epsilon 0.778  val return 10.93
+[high_gamma] episode 100  steps 10000  epsilon 0.606  val return 16.77
+[high_gamma] episode 150  steps 15000  epsilon 0.471  val return 15.40
+[high_gamma] episode 200  steps 20000  epsilon 0.367  val return 14.57
+[high_gamma] episode 250  steps 25000  epsilon 0.286  val return 18.23
+[high_gamma] episode 300  steps 30000  epsilon 0.222  val return 17.37
+[high_gamma] episode 350  steps 35000  epsilon 0.173  val return 17.63
+[high_gamma] episode 400  steps 40000  epsilon 0.135  val return 18.77
+[high_gamma] episode 450  steps 45000  epsilon 0.105  val return 18.33
+[high_gamma] episode 500  steps 50000  epsilon 0.082  val return 18.13
+[fast_decay] episode 50  steps 5000  epsilon 0.605  val return 13.97
+[fast_decay] episode 100  steps 10000  epsilon 0.366  val return 18.67
+[fast_decay] episode 150  steps 15000  epsilon 0.221  val return 15.43
+[fast_decay] episode 200  steps 20000  epsilon 0.134  val return 16.47
+[fast_decay] episode 250  steps 25000  epsilon 0.081  val return 18.43
+[fast_decay] episode 300  steps 30000  epsilon 0.050  val return 19.00
+[fast_decay] episode 350  steps 35000  epsilon 0.050  val return 19.17
+[fast_decay] episode 400  steps 40000  epsilon 0.050  val return 18.37
+[fast_decay] episode 450  steps 45000  epsilon 0.050  val return 17.00
+[fast_decay] episode 500  steps 50000  epsilon 0.050  val return 18.80
+
+    config     lr  gamma  eps_decay  best_val_return  best_episode  steps_to_beat_greedy  minutes
+      base 0.0010   0.95      0.995        20.633333           500                  5000     12.5
+    low_lr 0.0001   0.95      0.995        19.700000           350                 10000     11.7
+high_gamma 0.0010   0.99      0.995        18.766667           400                  5000     10.5
+fast_decay 0.0010   0.95      0.990        19.166667           350                  5000     11.4

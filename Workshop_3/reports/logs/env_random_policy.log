@@ -1,0 +1,9 @@
+...'y and Bullcalf: for you, Mould' + " war shippl'riel, money;,'lf,s.- Nymelish!,' modtier.', I cript;,'s, Are-murdey;.- Tist huncly.'-,-s"  (last reward +0)
+...", and 'tis a boy; be gar, I'll" + "; Busel;';-'scruplis';.-.- By'S- Words!'I,-swrivy!,'!',- Grivata,t! I wirr my milds.--Nam,-mind,' tr"  (last reward +0)
+...'y; what great men have been in' + "tinter,?-'Thunk Prates.'.'''- Wash hap here!d blush o'claim wilficiat'n? Ales thie medarcy-luxks.'- "  (last reward +0)
+
+100 random episodes
+  mean return:   -2.94 (std 3.28, min -11, max 7)
+  episode length: min 100, max 100, mean 100.0
+  action frequency: {0: np.float64(0.202), 1: np.float64(0.199), 2: np.float64(0.208), 3: np.float64(0.197), 4: np.float64(0.194)}
+  observation shape: (22,), all inside [0, 1]: True
