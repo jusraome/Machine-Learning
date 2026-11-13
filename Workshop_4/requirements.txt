@@ -1,0 +1,2 @@
+# Only needed for Parquet I/O; metadata checks and core tests use stdlib.
+pyarrow>=14,<24

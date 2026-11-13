@@ -1,0 +1,11 @@
+{
+  "dataset": "flwrlabs/shakespeare",
+  "revision": "2cfe3a5ba0d9b34634ade086803a479b2c2b8e11",
+  "seed": 42,
+  "window_size": 80,
+  "batch_size": 1024,
+  "vocab_path": "../Workshop_1/data/vocab.json",
+  "splits_path": "../Workshop_1/data/splits.json",
+  "processed_dir": "../Workshop_1/data/processed",
+  "raw_path": "../Workshop_1/data/raw/shakespeare.parquet"
+}
