@@ -1,0 +1,13 @@
+{
+  "zip": "exports\\workshop4_colab_deterioration_phase4.zip",
+  "sha256": "03caf0205cb94f6574ffaa3a045a3ef8b96f77eaa9f4bee6923b5bd3ef310228",
+  "bytes": 1050526,
+  "members": 99,
+  "crc": "OK",
+  "expected_sources_exact": true,
+  "all_notebooks_unexecuted_and_ast_valid": true,
+  "no_parquet_or_checkpoints": true,
+  "safe_extraction": true,
+  "audit_and_control_cli_dry_runs": true,
+  "training_executed": false
+}

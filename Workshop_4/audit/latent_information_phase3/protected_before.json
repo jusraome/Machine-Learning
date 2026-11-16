@@ -1,0 +1,20 @@
+{
+  "..\\Workshop_1\\data\\splits.json": "6391ec00389df6a73fb4e2c0c0f78092ff633e45bce1ce688cee659836f03f99",
+  "..\\Workshop_1\\data\\vocab.json": "92ebdd20c2ddddf986b4e1baf2649d611c59dd0b211ff035c41d35bc800a15c4",
+  "..\\Workshop_1\\data\\processed\\test.parquet": "20348e2a1cd9a09b0980508bef46e6b618aefddf1996c88416f1b239ef0d5ad6",
+  "..\\Workshop_1\\data\\processed\\train.parquet": "cba99d7579f146de83a17c1971045849959b45337c6952ad0dc866ca70da381d",
+  "..\\Workshop_1\\data\\processed\\val.parquet": "dfcd491ba3c77d1566b4cff4dbe22d14203515beec7dac979f9933c78bfaafc0",
+  "..\\Workshop_1\\data\\raw\\shakespeare.parquet": "f82afbfbcd484f8fde251930ae23b74080b6b8f3f38990726337bc0f70f73bfe",
+  "runs\\workshop4\\_smoke_real\\smoke_ae\\history.csv": "461cb527826e82f1e89389c0c36b444101122d4d25f363bb77828719e75486e7",
+  "runs\\workshop4\\_smoke_real\\smoke_ae\\metadata.json": "5727c959e14b1dbeee91a350421443fb382151d18b54dd08d30e352098fdd589",
+  "runs\\workshop4\\_smoke_real\\smoke_vae\\history.csv": "1f6e31675b5f961e5fa36783e2d60505d2957bf74d7cf2cfa5016c89089329e1",
+  "runs\\workshop4\\_smoke_real\\smoke_vae\\metadata.json": "e7977439478d292e5577567b7cb1773313d0932dc560846885279e86548bda95",
+  "runs\\workshop4\\_smoke_real\\smoke_ae\\checkpoints\\best.pt": "93d59926d33d80bf9e6a4d52138b36f9815c589bb2fbf4fcb08fdacaf37310d6",
+  "runs\\workshop4\\_smoke_real\\smoke_ae\\checkpoints\\last.pt": "7824221a3213dee87721e00335e65503f29e1a5e546b4ff1ba9d82a56a69bce5",
+  "runs\\workshop4\\_smoke_real\\smoke_vae\\checkpoints\\best.pt": "7fc4f88d55658cf1ce97b5b9e38d50a10934bab3e65f63b78b17eb86672c6348",
+  "runs\\workshop4\\_smoke_real\\smoke_vae\\checkpoints\\last.pt": "2b054072a63b14bc93e7ac132979190e8e5fcd58d317ba9e9ceaa799b44e9dd8",
+  "exports\\workshop4_colab.zip": "c700f1b0d07ffb3a4265b9c479e8c129bc715bc169cb6a2e032b0800a4420645",
+  "exports\\workshop4_colab_audited.zip": "91cde6d0489a18445523273c5f0bff9b3a79aec1e54668636a0c4fcc7a250c49",
+  "exports\\workshop4_colab_stability.zip": "f0a0685042416fc82b6b1facc844a42fad4a33f9423c50487d797a70fa4b691d",
+  "exports\\workshop4_colab_stability_plan.zip": "54b92e9a344f5a30f0201e856552b2191e96c84c6f432ee9e1c7e5da5b9ad76f"
+}

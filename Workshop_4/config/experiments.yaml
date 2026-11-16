@@ -1,0 +1,31 @@
+{
+  "defaults": {
+    "epochs": 30,
+    "batch_size": 512,
+    "learning_rate": 0.001,
+    "seed": 42,
+    "embedding_dim": 32,
+    "hidden_size": 128,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "shuffle_buffer_batches": 16,
+    "grad_clip": 5.0,
+    "beta": 1.0,
+    "normal_class": null
+  },
+  "recommended": ["ae_z32", "ae_z64", "vae_z32_b0p5", "vae_z32_b1", "vae_z32_b4"],
+  "experiments": [
+    {"name": "ae_z32", "model": "ae", "latent_dim": 32},
+    {"name": "ae_z64", "model": "ae", "latent_dim": 64},
+    {"name": "ae_z128", "model": "ae", "latent_dim": 128},
+    {"name": "vae_z32_b0p5", "model": "vae", "latent_dim": 32, "beta": 0.5},
+    {"name": "vae_z32_b1", "model": "vae", "latent_dim": 32, "beta": 1.0},
+    {"name": "vae_z32_b4", "model": "vae", "latent_dim": 32, "beta": 4.0},
+    {"name": "vae_z64_b0p5", "model": "vae", "latent_dim": 64, "beta": 0.5},
+    {"name": "vae_z64_b1", "model": "vae", "latent_dim": 64, "beta": 1.0},
+    {"name": "vae_z64_b4", "model": "vae", "latent_dim": 64, "beta": 4.0},
+    {"name": "vae_z128_b0p5", "model": "vae", "latent_dim": 128, "beta": 0.5},
+    {"name": "vae_z128_b1", "model": "vae", "latent_dim": 128, "beta": 1.0},
+    {"name": "vae_z128_b4", "model": "vae", "latent_dim": 128, "beta": 4.0}
+  ]
+}

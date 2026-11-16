@@ -1,0 +1,38 @@
+{
+  "provenance": "User-reported completed Colab run and five-batch T4 benchmarks; not independently re-evaluated by this local preparation.",
+  "completed_ae": {
+    "last_epoch": 30,
+    "best_epoch": 8,
+    "best_validation_loss": 168.665,
+    "last_validation_loss": 249.5645,
+    "original_batch_size": 128,
+    "learning_rate": 0.001,
+    "gradient_clip": 5.0
+  },
+  "reported_checkpoint_audit": [
+    "larger decoder saturation at epoch30",
+    "larger latent magnitude",
+    "reduced latent sensitivity",
+    "initial cause not established"
+  ],
+  "t4_benchmark_examples_per_second": [
+    {
+      "batch_size": 128,
+      "legacy_loader": 6658,
+      "tensor_loader": 7189
+    },
+    {
+      "batch_size": 256,
+      "legacy_loader": 11267,
+      "tensor_loader": 13162
+    },
+    {
+      "batch_size": 512,
+      "legacy_loader": 15023,
+      "tensor_loader": 17615
+    }
+  ],
+  "benchmark_batches": 5,
+  "long_epoch_speed_guaranteed": false,
+  "new_t4_stability_trials_executed": false
+}

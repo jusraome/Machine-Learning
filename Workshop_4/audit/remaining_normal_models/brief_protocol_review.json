@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-16",
+  "source": "previous full train/val label inventory reused after SHA verification; no new model scoring or test read",
+  "normal_class": 1,
+  "normal_token": " ",
+  "label_definition": "normal iff next-character y_id equals the train modal class; all other y proxy anomalies",
+  "train": {
+    "examples": 2997217,
+    "normal": 562253,
+    "anomaly": 2434964,
+    "anomaly_prevalence": 0.8124083107762968,
+    "parquet_sha256": "cba99d7579f146de83a17c1971045849959b45337c6952ad0dc866ca70da381d"
+  },
+  "validation": {
+    "examples": 583098,
+    "normal": 109197,
+    "anomaly": 473901,
+    "anomaly_prevalence": 0.8127295926242244,
+    "parquet_sha256": "dfcd491ba3c77d1566b4cff4dbe22d14203515beec7dac979f9933c78bfaafc0"
+  },
+  "role_counts": {
+    "model_selection": {
+      "speakers": 57,
+      "examples": 152927,
+      "normal": 28797,
+      "anomaly": 124130,
+      "anomaly_prevalence": 0.8116944686026666
+    },
+    "calibration": {
+      "speakers": 56,
+      "examples": 204635,
+      "normal": 38147,
+      "anomaly": 166488,
+      "anomaly_prevalence": 0.8135851638282796
+    },
+    "evaluation": {
+      "speakers": 56,
+      "examples": 225536,
+      "normal": 42253,
+      "anomaly": 183283,
+      "anomaly_prevalence": 0.8126551858683314
+    }
+  },
+  "score_direction": "higher NLL or categorical probability-onehot MSE => anomaly; positive_label=1",
+  "normal_source": "modal next-character y class from train only",
+  "test_scored": false,
+  "limitations": [
+    "proxy labels are not semantic anomaly annotations",
+    "high anomaly prevalence makes high AP alone weak evidence",
+    "fixed speaker roles and exact-input quarantine do not prove semantic independence",
+    "same number of rows is insufficient to establish a paired cohort; exact frozen IDs/hashes required"
+  ]
+}

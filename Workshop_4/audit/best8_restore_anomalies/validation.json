@@ -1,0 +1,35 @@
+{
+  "tests": {
+    "tests": 185,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 28.57799999997951
+  },
+  "protected_files": 123,
+  "sources_unchanged": true,
+  "changed_sources": [],
+  "source_sha256": {
+    "src\\checkpoint_fidelity.py": "ecf47742fa2d437232c490770e12b33f2d52757257349bc175b5d06fa547cb1b",
+    "src\\anomaly_evaluation.py": "e802b500868fa7d299dc3e23e587aeffbb64c3108b0be54b3c7e968245c7ba04",
+    "tests\\test_checkpoint_fidelity.py": "3f95861c32f57929ba5fcd8956bc0fdfab73e4550680ba0bbbc6ee1fd886a693",
+    "tests\\test_anomaly_evaluation.py": "8061a6155e300e8863b71d0b6fc7820d50e00809dae9c015cc26a7faa57e0638",
+    "config\\anomaly_evaluation.json": "ea58fe2530a973a7f7c0e4fb445898205c52c958eb3e75ca370e5bdd32028b4e",
+    "notebooks\\Workshop_4_Best8_Anomalies_Colab.ipynb": "aabffbdaa933ade2f1bb83905e965f6cdc82f5ad1009f237253b79d00c9caf51",
+    "BEST8_RESTORE_AND_ANOMALIES.md": "1433cb76511a9175c028d4afb2e397aee055a97ba8a18543568cdec3f8b1b9ee"
+  },
+  "notebook_ast_unexecuted": true,
+  "notebook_code_cells": 7,
+  "cli_plans_no_outputs": true,
+  "no_training_command_in_notebook": true,
+  "anomaly_evaluation_default_disabled": true,
+  "test_default_disabled": true,
+  "historical_best8_bytes_inspected": false,
+  "historical_adam_presence_verified": false,
+  "real_best8_anomaly_metrics_computed": false,
+  "new_continuation_executed": false,
+  "full_training_executed": false,
+  "tests_include_previous_tiny_realdata_integrations": true,
+  "torch": "2.15.0+cpu",
+  "cuda_available": false
+}

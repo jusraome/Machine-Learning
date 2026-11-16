@@ -1,0 +1,25 @@
+{
+  "source": "user-reported Phase4 execution, not re-run locally",
+  "initialization": "weights_only",
+  "source_epoch": 8,
+  "updates": 16,
+  "evaluations": [
+    {
+      "update": 0,
+      "nats_per_sequence": 160.4
+    },
+    {
+      "update": 8,
+      "nats_per_sequence": 227.15
+    },
+    {
+      "update": 16,
+      "nats_per_sequence": 193.81
+    }
+  ],
+  "stop_reason": "sustained_prefix_reconstruction_deterioration",
+  "initial_checkpoint_preserved": true,
+  "interpretation": "Fresh Adam + diagnostic prefix differ from original training; not causal optimizer evidence.",
+  "historical_checkpoint": "/content/drive/MyDrive/Workshop_4/runs/workshop4_clipping_v2_prueba12/ae_z32/checkpoints/best.pt",
+  "local_historical_binary_available": false
+}

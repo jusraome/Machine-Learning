@@ -1,0 +1,14 @@
+{
+  "seed": 42,
+  "val_examples": 128,
+  "batch_size": 128,
+  "max_updates": 24,
+  "learning_rate": 0.001,
+  "embedding_dim": 32,
+  "hidden_size": 128,
+  "latent_dim": 32,
+  "num_layers": 1,
+  "dropout": 0.0,
+  "max_seconds": 600,
+  "max_seconds_per_variant": 180
+}

@@ -1,0 +1,64 @@
+{
+  "tests": {
+    "tests": 262,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 84.76500000013039
+  },
+  "protected_files": 163,
+  "sources_unchanged": true,
+  "changed_sources": [],
+  "source_sha256": {
+    "src\\train_remaining_normal.py": "cdca856ce00206c7a4c57c54e74f305937b2ad90731a50e753b989d63c31bdb7",
+    "src\\evaluate_normal_models.py": "f02a2792488d716db7bcd9d25826a3099de70f8efef62237a567e3f3589b79e2",
+    "tests\\test_train_remaining_normal.py": "2d6ae45206412e7e7bc66b10fc57b37a7f2035093f20c32d538d8d95c293dd87",
+    "tests\\test_evaluate_normal_models.py": "b4d97d3997090de69d00810d867e97a436e40d905a058c437a1466933b9e5927",
+    "REMAINING_NORMAL_MODELS.md": "dd1c887e235c42897230c33268cfb325e2044b6ac96bb6af7f570778554118f6",
+    "config\\remaining_models\\ae_z64.json": "55cf0aaad11f25d6fc768aafd8270041b2c8ceaa39b224319b72bf3b2463acd7",
+    "config\\remaining_models\\vae_z32_b0p5.json": "0dcc39cea326b4cf3c1b4a5ed725a2f29583923925527cf9f61d084b9f1ba58c",
+    "config\\remaining_models\\vae_z32_b1.json": "a85696aa5073740ffd45fb45130872f3016d83a02b9775b11d66bfc47de959a5",
+    "config\\remaining_models\\vae_z32_b4.json": "2b4bff786b10f838ec02eae3b7be5ceae18de64fc0d9135c2c7357ea74dd22aa",
+    "notebooks\\Workshop_4_AE_z64_NormalOnly_Colab.ipynb": "f5c13799ed96f8657516400cb3891699e41ce59db811dc22af13edf30a147dcc",
+    "notebooks\\Workshop_4_VAE_z32_b0p5_NormalOnly_Colab.ipynb": "488d743de74e189ae2812e89a6666a9d847cd8928f73679328a51252cc4c2de7",
+    "notebooks\\Workshop_4_VAE_z32_b1_NormalOnly_Colab.ipynb": "84039aefef01c792acba85e9d0ba0b1a066794e6d4df354c8c8e5b29c970a3f5",
+    "notebooks\\Workshop_4_VAE_z32_b4_NormalOnly_Colab.ipynb": "93cd47c364b2cc162ab6afc8a03d2b7e1a0bab5f755015d6afc1644cc146a144",
+    "notebooks\\Workshop_4_Normal_Models_Comparison_Colab.ipynb": "dd269f5a4e6502085cfdc1b187aa61b81a5fde6b673ec5f4eb215578df18aff7"
+  },
+  "notebooks": {
+    "Workshop_4_AE_z64_NormalOnly_Colab.ipynb": {
+      "code_cells": 9,
+      "code_sha256": "a71f638091bbc4651d9f76655f0a27af224559f498e49642da9986c1ee80d314"
+    },
+    "Workshop_4_VAE_z32_b0p5_NormalOnly_Colab.ipynb": {
+      "code_cells": 9,
+      "code_sha256": "1e0a72ddbd7b9f3748a1cf145c572af915caa2da2eeb2431e6b92b7bd9397f7d"
+    },
+    "Workshop_4_VAE_z32_b1_NormalOnly_Colab.ipynb": {
+      "code_cells": 9,
+      "code_sha256": "eb9fc43f0cf18aa4e6bd39be04b21ed982c4667b005c0e564940ecea8ae7f3ff"
+    },
+    "Workshop_4_VAE_z32_b4_NormalOnly_Colab.ipynb": {
+      "code_cells": 9,
+      "code_sha256": "b108d72aa6f465c0e11a07b7c447e8cf3175b58648067254566ec67ece582d7e"
+    },
+    "Workshop_4_Normal_Models_Comparison_Colab.ipynb": {
+      "code_cells": 6,
+      "code_sha256": "b72ca4a11ff67e0f93e05f41471089262f32ae20b4ef70239fac100ebde0e62e"
+    }
+  },
+  "four_independent_training_defaults_disabled": true,
+  "comparison_default_disabled": true,
+  "ae_z32_production_retraining_supported": false,
+  "common_evaluator_has_test_mode": false,
+  "five_cli_plans_no_effects": true,
+  "reference_source_paths_configured": true,
+  "reference_7640_real_drive_bytes_verified_locally": false,
+  "full_shakespeare_training_executed": false,
+  "new_real_model_metrics_computed": false,
+  "test_model_evaluation_executed": false,
+  "existing_tiny_schema_and_realdata_regression_checks_included": true,
+  "torch": "2.15.0+cpu",
+  "cuda_available": false,
+  "copyedit_preserved_all_notebook_code": true
+}

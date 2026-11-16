@@ -1,0 +1,33 @@
+{
+  "operation": "normal_only_frozen_anomaly_evaluation",
+  "stage": "evaluate",
+  "execute": false,
+  "checkpoint": "C:\\Users\\rulit\\Downloads\\Machine-Learning-Equipo\\Workshop_4\\audit\\normal_only_ae\\new_training_not_started\\best_inference.pt",
+  "best8_baseline": null,
+  "frozen_protocol": null,
+  "config": {
+    "seed": 42,
+    "alpha": 0.05,
+    "primary_score": "brier_mse",
+    "max_calibration": 4096,
+    "max_evaluation": 8192,
+    "max_test": 8192,
+    "per_speaker_cap": 512,
+    "batch_size": 128,
+    "read_batch_size": 4096,
+    "max_seconds": 1800
+  },
+  "device": "cpu",
+  "primary_score": "brier_mse",
+  "optimizer_steps": 0,
+  "model_selection": "Already fixed by trainer using normal model_selection validation speakers only",
+  "calibration": "Normal calibration role only; thresholds sealed before mixed evaluation forward",
+  "test": "Separate explicit stage requiring sealed source hashes, score and thresholds; no refit",
+  "limitations": [
+    "y next-character classes are proxy anomaly labels, not semantic novelty annotations",
+    "AP must be interpreted against anomaly prevalence; trapezoidal PR-AUC is separately defined",
+    "Paired best8 comparison uses identical new rows; earlier reported2021 metrics are unpaired unless row fingerprints match",
+    "Reservoir samples are speaker-stratified subsets, not full validation or test",
+    "Paired best8 comparison additionally removes retained inputs found anywhere in all-class TRAIN from BOTH views"
+  ]
+}

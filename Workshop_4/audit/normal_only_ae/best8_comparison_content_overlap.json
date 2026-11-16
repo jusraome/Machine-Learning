@@ -1,0 +1,9 @@
+{
+  "scope": "selected clean validation rows versus ALL train x for exploratory best8 comparison; test not read",
+  "overlaps": {
+    "model_selection": 0,
+    "calibration": 0,
+    "evaluation": 20
+  },
+  "limitation": "best8 was selected using earlier full-validation losses; this baseline remains methodologically exploratory"
+}

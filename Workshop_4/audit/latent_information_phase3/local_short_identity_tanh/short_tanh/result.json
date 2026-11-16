@@ -1,0 +1,252 @@
+{
+  "activation": "tanh",
+  "updates": 24,
+  "examples": 3072,
+  "status": "completed",
+  "initial_state_sha256": "3f25b092351ce8796dbab6f04a3d9a8c2f8a235c105527bc86ac34865f441b07",
+  "snapshots": [
+    {
+      "update": 0,
+      "file": "step_000.json"
+    },
+    {
+      "update": 1,
+      "file": "step_001.json"
+    },
+    {
+      "update": 3,
+      "file": "step_003.json"
+    },
+    {
+      "update": 6,
+      "file": "step_006.json"
+    },
+    {
+      "update": 12,
+      "file": "step_012.json"
+    },
+    {
+      "update": 24,
+      "file": "step_024.json"
+    }
+  ],
+  "training": [
+    {
+      "update": 1,
+      "loss_nats_per_sequence": 346.4276428222656,
+      "norm_before": 27.070896728810983,
+      "norm_after": 4.999999953360786,
+      "scale": 0.1847001985227407,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 2,
+      "loss_nats_per_sequence": 344.5911865234375,
+      "norm_before": 27.316695089810707,
+      "norm_after": 5.000000001852964,
+      "scale": 0.18303824761967746,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 3,
+      "loss_nats_per_sequence": 342.87420654296875,
+      "norm_before": 28.154895914792636,
+      "norm_after": 4.999999997360205,
+      "scale": 0.17758900672664146,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 4,
+      "loss_nats_per_sequence": 340.7711181640625,
+      "norm_before": 29.946655449490738,
+      "norm_after": 5.000000029005394,
+      "scale": 0.1669635531898781,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 5,
+      "loss_nats_per_sequence": 338.4249267578125,
+      "norm_before": 32.85212691758614,
+      "norm_after": 4.999999972097097,
+      "scale": 0.15219714731235376,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 6,
+      "loss_nats_per_sequence": 335.3667907714844,
+      "norm_before": 37.49674611050767,
+      "norm_after": 4.999999992370002,
+      "scale": 0.13334490372216207,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 7,
+      "loss_nats_per_sequence": 331.3483581542969,
+      "norm_before": 44.61300146524343,
+      "norm_after": 5.000000017816942,
+      "scale": 0.11207495204946794,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 8,
+      "loss_nats_per_sequence": 326.27069091796875,
+      "norm_before": 53.10037706145884,
+      "norm_after": 5.000000001469094,
+      "scale": 0.09416128993232865,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 9,
+      "loss_nats_per_sequence": 319.17730712890625,
+      "norm_before": 64.42557859857025,
+      "norm_after": 5.0000000020132145,
+      "scale": 0.07760892659039248,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 10,
+      "loss_nats_per_sequence": 310.61273193359375,
+      "norm_before": 75.83602728987381,
+      "norm_after": 4.999999994787715,
+      "scale": 0.06593172372925232,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 11,
+      "loss_nats_per_sequence": 298.64263916015625,
+      "norm_before": 85.2176150326612,
+      "norm_after": 4.999999997172733,
+      "scale": 0.05867331534781464,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 12,
+      "loss_nats_per_sequence": 287.6351623535156,
+      "norm_before": 82.59191770708311,
+      "norm_after": 4.999999993439342,
+      "scale": 0.06053861126863262,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 13,
+      "loss_nats_per_sequence": 275.45306396484375,
+      "norm_before": 70.4469384325238,
+      "norm_after": 5.000000000164415,
+      "scale": 0.07097540519506254,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 14,
+      "loss_nats_per_sequence": 268.0019226074219,
+      "norm_before": 61.43869128695459,
+      "norm_after": 5.000000000193374,
+      "scale": 0.08138194182306192,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 15,
+      "loss_nats_per_sequence": 264.5260925292969,
+      "norm_before": 61.19952309124589,
+      "norm_after": 5.000000005082363,
+      "scale": 0.08169998306269827,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 16,
+      "loss_nats_per_sequence": 262.19781494140625,
+      "norm_before": 63.24710059058124,
+      "norm_after": 5.000000002736439,
+      "scale": 0.07905500731751489,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 17,
+      "loss_nats_per_sequence": 261.2877502441406,
+      "norm_before": 66.58290032058362,
+      "norm_after": 5.000000004498228,
+      "scale": 0.07509435569682275,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 18,
+      "loss_nats_per_sequence": 259.69189453125,
+      "norm_before": 65.59573555375374,
+      "norm_after": 5.0000000118300125,
+      "scale": 0.07622446730401627,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 19,
+      "loss_nats_per_sequence": 256.082763671875,
+      "norm_before": 61.92627119035124,
+      "norm_after": 5.00000000590526,
+      "scale": 0.0807411766264889,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 20,
+      "loss_nats_per_sequence": 255.8804473876953,
+      "norm_before": 54.3658303156394,
+      "norm_after": 4.999999988658633,
+      "scale": 0.09196953253488067,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 21,
+      "loss_nats_per_sequence": 252.4115447998047,
+      "norm_before": 40.90645842796483,
+      "norm_after": 4.999999996593181,
+      "scale": 0.12223008767197154,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 22,
+      "loss_nats_per_sequence": 252.4908905029297,
+      "norm_before": 31.31598723751737,
+      "norm_after": 4.999999999137873,
+      "scale": 0.15966285725170656,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 23,
+      "loss_nats_per_sequence": 251.21728515625,
+      "norm_before": 27.658318284436923,
+      "norm_after": 4.999999997992907,
+      "scale": 0.18077744093405176,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    },
+    {
+      "update": 24,
+      "loss_nats_per_sequence": 250.28152465820312,
+      "norm_before": 27.457124009416695,
+      "norm_after": 4.999999995432436,
+      "scale": 0.18210210210964556,
+      "clipped": true,
+      "fp32_overflow_risk": false
+    }
+  ],
+  "final_state_sha256": "9a9f8335f9cfe4c8b3bb6f6fac97e0fa4e6c5e11b855750c6c754b9f5e0ef9ff"
+}

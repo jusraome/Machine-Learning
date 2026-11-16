@@ -1,0 +1,31 @@
+{
+  "tests": {
+    "tests": 114,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 18.844000000040978,
+    "torch": "2.15.0+cpu",
+    "cuda_available": false
+  },
+  "protected_source_files": 18,
+  "sources_unchanged": true,
+  "changed_sources": [],
+  "notebook_code_cells": 7,
+  "notebook_ast_and_no_outputs": true,
+  "source_ast": true,
+  "full_training_executed": false,
+  "historical_checkpoint_writes": 0,
+  "production_experiment_matrix_executed": false,
+  "short_probe_updates": {
+    "identity": 24,
+    "tanh": 24
+  },
+  "baseline_full_train_examples": 2997217,
+  "validation_prefix_examples": 128,
+  "source_sha256": {
+    "src\\latent_diagnostics.py": "7121b89c81c90f13b3ae0341a461c49ea31e119e81216b99cbc0256b9d0f9f4a",
+    "src\\latent_diagnostic_runner.py": "e58e2203aef6e743564969bedfe0fd67067fbc965a27b16d0ca3c1f0a742fd63",
+    "notebooks\\Workshop_4_Latent_Information_Colab.ipynb": "0ff2f49c16adb846e048c3af356266fc48a1206dea647014de767d0b69f049d4"
+  }
+}

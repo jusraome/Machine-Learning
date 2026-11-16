@@ -1,0 +1,58 @@
+{
+  "source": "user report; not evaluated from T4 pilot checkpoints",
+  "device": "Tesla T4",
+  "training_examples_per_variant": 12288,
+  "clipped_fraction_all_variants": 1.0,
+  "safety_stops": false,
+  "variants": [
+    {
+      "name": "reference_b128",
+      "val_loss": 253.626,
+      "decoder_saturation": 0.5971,
+      "latent_sensitivity": 0.002738
+    },
+    {
+      "name": "batch256",
+      "val_loss": 253.909,
+      "decoder_saturation": 0.5806,
+      "latent_sensitivity": 0.002152
+    },
+    {
+      "name": "batch512",
+      "val_loss": 256.523,
+      "decoder_saturation": 0.3787,
+      "latent_sensitivity": 0.002874
+    },
+    {
+      "name": "lr0003",
+      "val_loss": 253.671,
+      "decoder_saturation": 0.3945,
+      "latent_sensitivity": 0.001507
+    },
+    {
+      "name": "latent_tanh",
+      "val_loss": 253.479,
+      "decoder_saturation": 0.4139,
+      "latent_sensitivity": 0.000608
+    }
+  ],
+  "reference_trajectory": [
+    {
+      "update": 0,
+      "latent_sensitivity": 0.29017
+    },
+    {
+      "update": 12,
+      "latent_sensitivity": 0.06071
+    },
+    {
+      "update": 24,
+      "latent_sensitivity": 0.002836
+    }
+  ],
+  "limitations": [
+    "fixed training prefix",
+    "no demonstration of stability over 30 epochs",
+    "pilot checkpoint weights unavailable locally"
+  ]
+}

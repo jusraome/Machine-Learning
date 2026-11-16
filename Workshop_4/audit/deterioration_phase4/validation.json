@@ -1,0 +1,33 @@
+{
+  "tests": {
+    "tests": 149,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 16.093999999808148
+  },
+  "protected_files": 105,
+  "sources_unchanged": true,
+  "changed_sources": [],
+  "source_sha256": {
+    "src\\deterioration_audit.py": "b7c0816e836883c03abdd090c6e8080ab741b08090c581bc5b6d8ab510725c10",
+    "src\\deterioration_control.py": "199694bc20f4da1418ce710a34c1f7d9452f491baf4b0b5d31fde84aaf93dee7",
+    "config\\deterioration_control.json": "3504281a19cc6aeed1e12fd0d5048038d0ebac364ffd783ee7864af9f85a32fe",
+    "tests\\test_deterioration_audit.py": "faa9e2962fad1021bdd4c3625a28b58c379d36a79b6bd966c2acebd1acfe7ff1",
+    "tests\\test_deterioration_control.py": "ea01c28345faeaf9917d6d6f491a0afabba96cbda492009bcdfc925037881bfa",
+    "notebooks\\Workshop_4_Deterioration_Colab.ipynb": "0dbcd24c266c60ccc0364b8b6d5473c9615ad3705200ee5f0555513f02e06b8e",
+    "AUDIT_REPORT_PHASE4.md": "1814164bd5800b7ec1937bdac6b5f2868d2fb1552cfac5ec21c35d0047f5e443"
+  },
+  "torch": "2.15.0+cpu",
+  "cuda_available": false,
+  "notebooks_code_cells": 9,
+  "notebook_ast_unexecuted": true,
+  "default_training_disabled": true,
+  "cli_dry_run_no_outputs": true,
+  "full_training_executed": false,
+  "controlled_shakespeare_training_executed": false,
+  "tests_include_existing_tiny_real_data_integrations": true,
+  "historical_drive_logs_read_locally": false,
+  "historical_checkpoints_modified": false,
+  "root_cause_established": false
+}

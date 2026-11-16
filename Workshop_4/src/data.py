@@ -70,6 +70,7 @@ class DataPipeline:
         self.vocab = validate_vocab(read_json(self.config["vocab_path"]))
         self.splits = validate_splits(read_json(self.config["splits_path"]))
         self.groups = {name: set(ids) for name, ids in self.splits["character_ids"].items()}
+        self._codepoint_lookup = None
 
     def inventory(self):
         paths = {"raw": Path(self.config["raw_path"])}
@@ -101,10 +102,11 @@ class DataPipeline:
             raise ValueError("missing or incompatible data_contract (legacy checkpoints unsupported)")
         return True
 
-    def encode_rows(self, rows, split):
+    def _validate_rows(self, rows, split):
+        """Shared row contract for list and tensor readers; no fitting or writes."""
         if split not in SPLITS:
             raise ValueError(f"unknown split: {split}")
-        inputs, targets = [], []
+        texts, targets = [], []
         stoi = self.vocab["stoi"]
         for row in rows:
             x, y = row.get("x"), row.get("y")
@@ -115,12 +117,45 @@ class DataPipeline:
             y_id = stoi.get(y, 0)
             if "y_id" in row and (type(row["y_id"]) is not int or row["y_id"] != y_id):
                 raise ValueError("y_id inconsistent with vocabulary")
-            inputs.append([stoi.get(char, 0) for char in x])
+            texts.append(x)
             targets.append(y_id)
+        return texts, targets
+
+    def encode_rows(self, rows, split):
+        texts, targets = self._validate_rows(rows, split)
+        stoi = self.vocab["stoi"]
+        inputs = [[stoi.get(char, 0) for char in text] for text in texts]
         # Reconstruction uses x as its target; y is retained for later evaluation.
         return {"x": inputs, "y": targets}
 
-    def iter_batches(self, split, batch_size=None):
+    def encode_tensor_rows(self, rows, split):
+        """Equivalent CPU long tensors without one Python lookup per character.
+
+        UTF-32 represents one code point per character, including non-BMP text.
+        A bounded dense lookup is built from the existing vocabulary; out-of-range
+        code points map to UNK (0). No PAD category or mask is introduced.
+        NumPy/PyTorch are imported only for the optional tensor reader.
+        """
+        import numpy as np
+        import torch
+
+        texts, targets = self._validate_rows(rows, split)
+        if self._codepoint_lookup is None:
+            pairs = [(ord(token), index) for index, token in enumerate(self.vocab["itos"]) if index]
+            largest = max((codepoint for codepoint, _ in pairs), default=0)
+            # The Unicode space is bounded; Shakespeare uses only a small table.
+            self._codepoint_lookup = np.zeros(max(256, largest + 1), dtype=np.int64)
+            for codepoint, index in pairs:
+                self._codepoint_lookup[codepoint] = index
+        codepoints = np.frombuffer("".join(texts).encode("utf-32-le", errors="surrogatepass"), dtype="<u4")
+        encoded = np.zeros(codepoints.shape, dtype=np.int64)
+        in_range = codepoints < len(self._codepoint_lookup)
+        encoded[in_range] = self._codepoint_lookup[codepoints[in_range]]
+        x = torch.from_numpy(encoded.reshape(len(texts), self.config["window_size"]))
+        return {"x": x, "y": torch.tensor(targets, dtype=torch.long)}
+
+    def _iter_rows_batches(self, split, batch_size=None):
+        """One checked Parquet path shared by both encoding implementations."""
         if split not in SPLITS:
             raise ValueError(f"unknown split: {split}")
         size = self.config["batch_size"] if batch_size is None else batch_size
@@ -140,9 +175,26 @@ class DataPipeline:
             if expected is not None and parquet.metadata.num_rows != expected:
                 raise ValueError(f"row count mismatch for {split}")
             for batch in parquet.iter_batches(batch_size=size, columns=columns, use_threads=False):
-                yield self.encode_rows(batch.to_pylist(), split)
+                yield batch.to_pylist()
         finally:
             parquet.close()
+
+    def iter_batches(self, split, batch_size=None):
+        reader = self._iter_rows_batches(split, batch_size)
+        try:
+            for rows in reader:
+                yield self.encode_rows(rows, split)
+        finally:
+            reader.close()
+
+    def iter_tensor_batches(self, split, batch_size=None):
+        """Optional vectorized encoding; identical rows and order to iter_batches."""
+        reader = self._iter_rows_batches(split, batch_size)
+        try:
+            for rows in reader:
+                yield self.encode_tensor_rows(rows, split)
+        finally:
+            reader.close()
 
 
 if __name__ == "__main__":

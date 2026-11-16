@@ -1,0 +1,102 @@
+{
+  "provenance": "Values supplied by the user in the audit request; not read from Colab files. Derived NLL/perplexity are arithmetic transformations, not new evaluations.",
+  "sequence_length": 80,
+  "rows": [
+    {
+      "epoch": 1,
+      "train_loss": 219.17,
+      "val_loss": 209.09,
+      "val_nats_per_character": 2.613625,
+      "val_perplexity": 13.648436869245124
+    },
+    {
+      "epoch": 4,
+      "train_loss": 178.63,
+      "val_loss": 184.66,
+      "val_nats_per_character": 2.30825,
+      "val_perplexity": 10.056809829335233
+    },
+    {
+      "epoch": 8,
+      "train_loss": 164.7,
+      "val_loss": 168.67,
+      "val_nats_per_character": 2.1083749999999997,
+      "val_perplexity": 8.234848776898717
+    },
+    {
+      "epoch": 11,
+      "train_loss": 159.07,
+      "val_loss": 172.69,
+      "val_nats_per_character": 2.158625,
+      "val_perplexity": 8.659223037362246
+    },
+    {
+      "epoch": 12,
+      "train_loss": 709.8,
+      "val_loss": 1212.92,
+      "val_nats_per_character": 15.1615,
+      "val_perplexity": 3841986.0831077313
+    },
+    {
+      "epoch": 13,
+      "train_loss": 1043.41,
+      "val_loss": 336.01,
+      "val_nats_per_character": 4.200125,
+      "val_perplexity": 66.69466735331392
+    },
+    {
+      "epoch": 14,
+      "train_loss": 882.82,
+      "val_loss": 1131.97,
+      "val_nats_per_character": 14.149625,
+      "val_perplexity": 1396702.9759604328
+    },
+    {
+      "epoch": 15,
+      "train_loss": 1490.27,
+      "val_loss": 1333.13,
+      "val_nats_per_character": 16.664125000000002,
+      "val_perplexity": 17263845.20338239
+    },
+    {
+      "epoch": 20,
+      "train_loss": 979.9,
+      "val_loss": 710.68,
+      "val_nats_per_character": 8.8835,
+      "val_perplexity": 7211.988573870074
+    },
+    {
+      "epoch": 22,
+      "train_loss": 258.62,
+      "val_loss": 249.79,
+      "val_nats_per_character": 3.122375,
+      "val_perplexity": 22.700228715289203
+    },
+    {
+      "epoch": 24,
+      "train_loss": 251.65,
+      "val_loss": 249.33,
+      "val_nats_per_character": 3.116625,
+      "val_perplexity": 22.5700769451106
+    },
+    {
+      "epoch": 25,
+      "train_loss": 249.47,
+      "val_loss": 249.01,
+      "val_nats_per_character": 3.112625,
+      "val_perplexity": 22.479976957438787
+    },
+    {
+      "epoch": 26,
+      "train_loss": 249.2,
+      "val_loss": 250.66,
+      "val_nats_per_character": 3.13325,
+      "val_perplexity": 22.94844091013474
+    }
+  ],
+  "train_batches_128": 23416,
+  "epoch25_clipped_fraction": 1.0,
+  "val26_relative_to_best8": 1.4860971127052827,
+  "uniform_76_loss": 346.45866722290646,
+  "pre_max_to_post_scale_example": 6.337135614702155e-16
+}

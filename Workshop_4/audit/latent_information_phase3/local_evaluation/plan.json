@@ -1,0 +1,39 @@
+{
+  "phase": 3,
+  "settings": {
+    "seed": 42,
+    "val_examples": 128,
+    "batch_size": 128,
+    "max_updates": 24,
+    "learning_rate": 0.001,
+    "embedding_dim": 32,
+    "hidden_size": 128,
+    "latent_dim": 32,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "max_seconds": 600,
+    "max_seconds_per_variant": 180
+  },
+  "checkpoints": {},
+  "short_probe": false,
+  "architectures": [],
+  "snapshots": [
+    0,
+    1,
+    3,
+    6,
+    12,
+    24
+  ],
+  "max_total_updates": 0,
+  "baseline": "all train x windows, add-alpha=0.5; never val/test fitting",
+  "device": "cpu",
+  "execute": true,
+  "limitations": [
+    "fixed validation prefix; possibly correlated overlapping windows and speakers",
+    "short probes use a fixed training prefix, not 30-epoch stability evidence",
+    "intervention utility is not an estimate of mutual information",
+    "zero z may be outside the learned latent distribution",
+    "reported T4 pilots cannot be recreated without their saved model weights"
+  ]
+}

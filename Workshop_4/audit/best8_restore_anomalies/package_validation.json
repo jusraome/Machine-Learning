@@ -1,0 +1,13 @@
+{
+  "zip": "exports\\workshop4_colab_best8_anomalies.zip",
+  "sha256": "e16137fe01ad701c97015df8a11dd4dadb81e2c9a09a1c8efecc97d3b92a90f7",
+  "bytes": 1099561,
+  "members": 115,
+  "crc": "OK",
+  "expected_sources_exact": true,
+  "all_notebooks_unexecuted_and_ast_valid": true,
+  "no_weights_or_datasets": true,
+  "safe_extraction": true,
+  "both_cli_dry_runs": true,
+  "training_executed": false
+}

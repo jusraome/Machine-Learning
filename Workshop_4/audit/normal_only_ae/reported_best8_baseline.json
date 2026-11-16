@@ -1,0 +1,22 @@
+{
+  "source": "user-reported exploratory best8 evaluation; not re-run locally; exact row fingerprints/counts of each class unavailable",
+  "examples": 2021,
+  "optimizer_updates": 0,
+  "brier_mse": {
+    "roc_auc": 0.490708,
+    "average_precision": 0.81769,
+    "recall": 0.06424,
+    "f1": 0.11917
+  },
+  "nll": {
+    "roc_auc": 0.509244,
+    "average_precision": 0.826352,
+    "recall": 0.08,
+    "f1": 0.14634
+  },
+  "limitations": [
+    "AP is not trapezoidal PR-AUC",
+    "do not infer exact prevalence from AP",
+    "new paired comparison needs same rows"
+  ]
+}

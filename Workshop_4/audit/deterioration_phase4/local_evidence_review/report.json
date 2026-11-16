@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "epoch_window": [
+    8,
+    15
+  ],
+  "sources": {
+    "history": {
+      "status": "not_provided",
+      "path": null
+    },
+    "gradient_norms": {
+      "status": "not_provided",
+      "path": null
+    },
+    "events": {
+      "status": "not_provided",
+      "path": null
+    },
+    "metadata": {
+      "status": "not_provided",
+      "path": null
+    },
+    "reported_history": {
+      "status": "parsed_user_report",
+      "path": "C:\\Users\\rulit\\Downloads\\Machine-Learning-Equipo\\Workshop_4\\audit\\evidence\\user_reported_history.json",
+      "sha256": "a3fd29bebba01140b2a52f19b616e013e91320572b57c927b6314e1345c519a7",
+      "size_bytes": 2758,
+      "mtime_ns": 1794628622903946600
+    }
+  },
+  "confirmed_checkpoint_comparison": {
+    "provenance": "user_confirmed_checkpoint_evaluation; not reevaluated from local weights",
+    "validation_scope": "same fixed 128 validation sequences, 80 positions each; not full validation",
+    "rows": [
+      {
+        "epoch": 8,
+        "reconstruction_nats_per_sequence": 160.400189,
+        "baseline_marginal_nats_per_sequence": 252.388629,
+        "swap_damage_nats_per_sequence": 359.958162,
+        "probability_tv": 0.662012,
+        "reconstruction_nats_per_character": 2.0050023625,
+        "gain_over_marginal_nats_per_sequence": 91.98844
+      },
+      {
+        "epoch": 30,
+        "reconstruction_nats_per_sequence": 250.129855,
+        "baseline_marginal_nats_per_sequence": 252.388629,
+        "swap_damage_nats_per_sequence": 3.640303,
+        "probability_tv": 0.013355,
+        "reconstruction_nats_per_character": 3.1266231875,
+        "gain_over_marginal_nats_per_sequence": 2.2587740000000167
+      }
+    ],
+    "reconstruction_increase_nats_per_sequence": 89.72966599999998,
+    "reconstruction_relative_increase": 0.5594112236364008,
+    "swap_damage_retained_fraction": 0.01011312809181418,
+    "probability_tv_retained_fraction": 0.02017335033201815,
+    "conclusion": "Example-specific reconstruction and latent dependence deteriorated markedly; root cause remains unestablished."
+  },
+  "history": {
+    "provenance": "earlier_user_reported_history; not raw Colab logs",
+    "rows": [
+      {
+        "epoch": 8,
+        "train_reconstruction": 164.7,
+        "val_reconstruction": 168.67,
+        "train_nats_per_sequence": 164.7,
+        "val_nats_per_sequence": 168.67,
+        "train_field_used": "train_reconstruction",
+        "val_field_used": "val_reconstruction",
+        "val_relative_to_epoch8": 0.0,
+        "train_relative_to_epoch8": 0.0
+      },
+      {
+        "epoch": 11,
+        "train_reconstruction": 159.07,
+        "val_reconstruction": 172.69,
+        "train_nats_per_sequence": 159.07,
+        "val_nats_per_sequence": 172.69,
+        "train_field_used": "train_reconstruction",
+        "val_field_used": "val_reconstruction",
+        "val_relative_to_epoch8": 0.023833521076658704,
+        "train_relative_to_epoch8": -0.03418336369156039
+      },
+      {
+        "epoch": 12,
+        "train_reconstruction": 709.8,
+        "val_reconstruction": 1212.92,
+        "train_nats_per_sequence": 709.8,
+        "val_nats_per_sequence": 1212.92,
+        "train_field_used": "train_reconstruction",
+        "val_field_used": "val_reconstruction",
+        "val_relative_to_epoch8": 6.191083180174306,
+        "train_relative_to_epoch8": 3.3096539162112935
+      },
+      {
+        "epoch": 13,
+        "train_reconstruction": 1043.41,
+        "val_reconstruction": 336.01,
+        "train_nats_per_sequence": 1043.41,
+        "val_nats_per_sequence": 336.01,
+        "train_field_used": "train_reconstruction",
+        "val_field_used": "val_reconstruction",
+        "val_relative_to_epoch8": 0.9921147803403096,
+        "train_relative_to_epoch8": 5.335215543412265
+      },
+      {
+        "epoch": 14,
+        "train_reconstruction": 882.82,
+        "val_reconstruction": 1131.97,
+        "train_nats_per_sequence": 882.82,
+        "val_nats_per_sequence": 1131.97,
+        "train_field_used": "train_reconstruction",
+        "val_field_used": "val_reconstruction",
+        "val_relative_to_epoch8": 5.711151953518706,
+        "train_relative_to_epoch8": 4.360170006071646
+      },
+      {
+        "epoch": 15,
+        "train_reconstruction": 1490.27,
+        "val_reconstruction": 1333.13,
+        "train_nats_per_sequence": 1490.27,
+        "val_nats_per_sequence": 1333.13,
+        "train_field_used": "train_reconstruction",
+        "val_field_used": "val_reconstruction",
+        "val_relative_to_epoch8": 6.903776605205432,
+        "train_relative_to_epoch8": 8.048391013964785
+      }
+    ],
+    "missing_epochs": [
+      9,
+      10
+    ],
+    "duplicate_epochs": [],
+    "chronological_order": true,
+    "transitions": [
+      {
+        "from_epoch": 8,
+        "to_epoch": 11,
+        "adjacent_epochs": false,
+        "train_ratio": 0.9658166363084396,
+        "val_ratio": 1.0238335210766587,
+        "interpretation": "descriptive recorded transition, not a causal change-point estimate"
+      },
+      {
+        "from_epoch": 11,
+        "to_epoch": 12,
+        "adjacent_epochs": true,
+        "train_ratio": 4.462186458791727,
+        "val_ratio": 7.023684058138862,
+        "interpretation": "descriptive recorded transition, not a causal change-point estimate"
+      },
+      {
+        "from_epoch": 12,
+        "to_epoch": 13,
+        "adjacent_epochs": true,
+        "train_ratio": 1.470005635390251,
+        "val_ratio": 0.2770256900702437,
+        "interpretation": "descriptive recorded transition, not a causal change-point estimate"
+      },
+      {
+        "from_epoch": 13,
+        "to_epoch": 14,
+        "adjacent_epochs": true,
+        "train_ratio": 0.8460911817981426,
+        "val_ratio": 3.3688580697003068,
+        "interpretation": "descriptive recorded transition, not a causal change-point estimate"
+      },
+      {
+        "from_epoch": 14,
+        "to_epoch": 15,
+        "adjacent_epochs": true,
+        "train_ratio": 1.688079110124374,
+        "val_ratio": 1.177707889785065,
+        "interpretation": "descriptive recorded transition, not a causal change-point estimate"
+      }
+    ],
+    "large_adjacent_increases": [
+      {
+        "from_epoch": 11,
+        "to_epoch": 12,
+        "adjacent_epochs": true,
+        "train_ratio": 4.462186458791727,
+        "val_ratio": 7.023684058138862,
+        "interpretation": "descriptive recorded transition, not a causal change-point estimate"
+      },
+      {
+        "from_epoch": 13,
+        "to_epoch": 14,
+        "adjacent_epochs": true,
+        "train_ratio": 0.8460911817981426,
+        "val_ratio": 3.3688580697003068,
+        "interpretation": "descriptive recorded transition, not a causal change-point estimate"
+      },
+      {
+        "from_epoch": 14,
+        "to_epoch": 15,
+        "adjacent_epochs": true,
+        "train_ratio": 1.688079110124374,
+        "val_ratio": 1.177707889785065,
+        "interpretation": "descriptive recorded transition, not a causal change-point estimate"
+      }
+    ],
+    "epoch8_reference_available": true,
+    "scope_limit": "History is an epoch aggregate; scope/counts must be checked before comparing with the separate 128-sequence checkpoint diagnostic."
+  },
+  "gradient_norms": null,
+  "events": null,
+  "metadata": null,
+  "cross_log_alignment": [],
+  "assumed_clip_norm": 5.0,
+  "optimizer_steps": 0,
+  "limitations": [
+    "Missing logs are unavailable evidence, not zero events or zero gradients.",
+    "Empty event files contain zero logged events; instrumentation/coverage is not established by emptiness.",
+    "nonfinite_events.jsonl can contain accepted finite-gradient clipping events; filename is not event classification.",
+    "Clipping frequency alone does not establish the cause of model deterioration.",
+    "History epoch aggregates and the fixed 128-sequence checkpoint diagnostic are distinct validation scopes.",
+    "Time alignment supports descriptive co-occurrence only; no causal claim or reconstruction of missing batches."
+  ],
+  "sources_unchanged": true,
+  "root_cause_established": false
+}

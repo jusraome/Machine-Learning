@@ -1,0 +1,10 @@
+{
+  "availability": "missing",
+  "path": "C:\\Users\\rulit\\Downloads\\Machine-Learning-Equipo\\Workshop_4\\audit\\best8_restore_anomalies\\historical_input_not_copied\\best.pt",
+  "inspected": false,
+  "historical_faithful_continuation_eligible": false,
+  "optimizer_steps_performed": 0,
+  "limitation": "Actual checkpoint bytes unavailable here; inspect after mounting Drive, do not infer Adam presence from code.",
+  "expected_drive_source": "/content/drive/MyDrive/Workshop_4/runs/workshop4_clipping_v2_prueba12/ae_z32/checkpoints/best.pt",
+  "scope": "local availability only; actual Drive file must be inspected in Colab"
+}

@@ -1,0 +1,13 @@
+{
+  "zip": "exports\\workshop4_colab_normal_only_ae.zip",
+  "sha256": "db61b762277879143c46a1fd3cc98aae27f105781588c03e28c253128b30c603",
+  "bytes": 2434251,
+  "members": 135,
+  "crc": "OK",
+  "expected_sources_exact": true,
+  "all_notebooks_ast_unexecuted": true,
+  "no_datasets_or_checkpoints": true,
+  "safe_extraction": true,
+  "both_extracted_cli_plans": true,
+  "training_executed": false
+}

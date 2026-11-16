@@ -1,0 +1,15 @@
+{
+  "zip": "exports\\workshop4_colab_ae64_vae_normal_only.zip",
+  "sha256": "7a62c3ece9fc492cc9461f371935fe3dd5b1d0cf434fe72ab4a0ed1a392c1c2a",
+  "bytes": 2528720,
+  "members": 162,
+  "crc": "OK",
+  "expected_sources_exact": true,
+  "all_notebooks_unexecuted_and_ast_valid": true,
+  "four_training_defaults_disabled": true,
+  "no_datasets_or_weights": true,
+  "safe_extraction": true,
+  "five_extracted_cli_plans": true,
+  "training_executed": false,
+  "test_model_evaluation_executed": false
+}

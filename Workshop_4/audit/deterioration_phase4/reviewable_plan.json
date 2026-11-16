@@ -1,0 +1,52 @@
+{
+  "phase": 4,
+  "runner": "original_AE_z32_controlled_window",
+  "config": {
+    "seed": 42,
+    "batch_size": 128,
+    "max_updates": 64,
+    "evaluate_every": 8,
+    "max_seconds": 600,
+    "embedding_dim": 32,
+    "hidden_size": 128,
+    "latent_dim": 32,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "learning_rate": 0.001,
+    "grad_clip": 5.0,
+    "val_examples": 128,
+    "ce_warning_ratio": 1.2,
+    "ce_severe_ratio": 2.0,
+    "swap_retention": 0.5,
+    "min_swap_utility": 1.0,
+    "patience": 2,
+    "max_raw_grad_norm": 100000000.0,
+    "max_latent_abs": 100.0
+  },
+  "source_checkpoint": null,
+  "initialization": "fresh",
+  "max_cumulative_updates": 256,
+  "fixed_training_prefix_examples": 32768,
+  "diagnostic_validation_examples": 128,
+  "full_validation": false,
+  "full_validation_schedule": "initial and completed-final only, optional; stopped/invalid state is not fully evaluated",
+  "checkpoint_schedule": "initial, each evaluation interval, final; immutable files",
+  "baseline_scope": "all train x only, alpha=.5",
+  "device": "cpu",
+  "control_rules": {
+    "ce_warning_ratio": 1.2,
+    "ce_severe_ratio": 2.0,
+    "swap_retention": 0.5,
+    "min_swap_utility": 1.0,
+    "patience": 2
+  },
+  "selection": "best eligible reconstruction on fixed diagnostic val only; not full-validation production selection",
+  "execution_enabled": false,
+  "limitations": [
+    "fixed train prefix and fixed val prefix; no 30-epoch stability demonstration",
+    "weights_only uses fresh Adam, not historical optimizer replay",
+    "continue supports Phase4 checkpoints only; preserves fixed-prefix cursor/order",
+    "reset_adam uses Phase4 cursor/RNG/order with fresh Adam for a matched optimizer contrast",
+    "hypothesis probe, no architecture change or automatic grid"
+  ]
+}

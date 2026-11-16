@@ -1,0 +1,38 @@
+{
+  "tests": {
+    "tests": 235,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 60.03099999995902
+  },
+  "protected_files": 141,
+  "sources_unchanged": true,
+  "changed_sources": [],
+  "source_sha256": {
+    "src\\normal_only_protocol.py": "0ca64aabb3f873234e1b854a2730f3b49c1882a296dfd1f81097e23e13922285",
+    "src\\train_normal_ae.py": "ab8977d03eb690f296d7ba3ea7a028811e691083a1bb3b7fb9a5fa7ffa16fe6e",
+    "src\\evaluate_normal_ae.py": "6f007ad3b9384c47dccf5cdb703ff396ab5591a9309780d32a365d43d3337bcb",
+    "config\\normal_only_ae.json": "99f855a1c6302f43dc181cae35e8b6e5fe7c1e75b9594fe65e2bbef574f7a3bc",
+    "tests\\test_normal_only_protocol.py": "7fc511df7d5bb9406b1d9add65fe7366828708cdb987c70e442787c69afc12ca",
+    "tests\\test_train_normal_ae.py": "8efaf98eb5e23d04694a94a53a0c7e2436b728d06f010da9178f80b15b809efb",
+    "tests\\test_evaluate_normal_ae.py": "6794613f030dd9149bdbab0fb2c2d7decae4bad3082c8df27ff8ee3e3dae67f2",
+    "notebooks\\Workshop_4_NormalOnly_AE_Colab.ipynb": "37a34bc528e819fde7a65ab5354ea9eae5d33d6bdc707921d8f4d78f7bd52e79",
+    "NORMAL_ONLY_ANOMALIES_PLAN.md": "a036eba478e274d563d8877a94df041675aeec2a53719aeb9ccc6a682c781fdd"
+  },
+  "notebook_code_cells": 8,
+  "notebook_ast_unexecuted": true,
+  "cli_plan_no_effects": true,
+  "training_default_disabled": true,
+  "final_test_default_disabled": true,
+  "only_one_from_scratch_ae_z32_prepared": true,
+  "training_from_best8_disabled": true,
+  "full_shakespeare_training_executed_locally": false,
+  "actual_normal_only_metrics_computed": false,
+  "validation_data_preparation_only": true,
+  "test_scoring_executed": false,
+  "previous_tiny_realdata_integration_tests_included": true,
+  "torch": "2.15.0+cpu",
+  "cuda_available": false,
+  "notebook_copyedit_preserved_code": true
+}

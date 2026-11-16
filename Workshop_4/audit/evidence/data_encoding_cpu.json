@@ -1,0 +1,52 @@
+{
+  "scope": "CPU encoding only; excludes Parquet I/O, GPU transfer and model computation",
+  "python": "3.12.10",
+  "torch": "2.15.0+cpu",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "threads": 1,
+  "rows_source": "first 512 rows of existing train.parquet",
+  "repeats": 3,
+  "iterations_per_repeat": 50,
+  "results": [
+    {
+      "batch_size": 128,
+      "legacy_encode_plus_tensor": {
+        "median_ms_per_batch": 3.0977920023724437,
+        "repeats_ms": [
+          3.0977920023724437,
+          2.982976003549993,
+          3.270568000152707
+        ]
+      },
+      "vectorized_encode_tensor": {
+        "median_ms_per_batch": 0.48233400098979473,
+        "repeats_ms": [
+          0.48233400098979473,
+          0.5193359963595867,
+          0.37655800115317106
+        ]
+      },
+      "median_speedup": 6.422503899819385
+    },
+    {
+      "batch_size": 512,
+      "legacy_encode_plus_tensor": {
+        "median_ms_per_batch": 11.62947400007397,
+        "repeats_ms": [
+          11.62947400007397,
+          11.86990600079298,
+          11.217283997684717
+        ]
+      },
+      "vectorized_encode_tensor": {
+        "median_ms_per_batch": 0.9937920002266765,
+        "repeats_ms": [
+          1.046581999398768,
+          0.9806019999086857,
+          0.9937920002266765
+        ]
+      },
+      "median_speedup": 11.702120763118815
+    }
+  ]
+}

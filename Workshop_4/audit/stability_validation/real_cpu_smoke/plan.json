@@ -1,0 +1,81 @@
+{
+  "pilot_only": true,
+  "execute": true,
+  "trials": [
+    {
+      "name": "reference_cpu_smoke__updates",
+      "variant": "reference_cpu_smoke",
+      "budget": "updates",
+      "config": {
+        "seed": 42,
+        "embedding_dim": 4,
+        "hidden_size": 8,
+        "latent_dim": 3,
+        "num_layers": 1,
+        "dropout": 0.0,
+        "batch_size": 2,
+        "learning_rate": 0.001,
+        "latent_activation": "identity",
+        "tensor_loader": true,
+        "grad_clip": 5.0
+      },
+      "budget_limits": {
+        "max_updates": 2,
+        "max_examples": 8
+      },
+      "target_updates": 2,
+      "target_examples": 4,
+      "budget_feasible": true
+    }
+  ],
+  "plan": {
+    "version": 1,
+    "defaults": {
+      "seed": 42,
+      "embedding_dim": 4,
+      "hidden_size": 8,
+      "latent_dim": 3,
+      "num_layers": 1,
+      "dropout": 0.0,
+      "batch_size": 2,
+      "learning_rate": 0.001,
+      "latent_activation": "identity",
+      "tensor_loader": true,
+      "grad_clip": 5.0
+    },
+    "variants": [
+      {
+        "name": "reference_cpu_smoke",
+        "changes": {}
+      }
+    ],
+    "budgets": {
+      "updates": {
+        "max_updates": 2,
+        "max_examples": 8
+      },
+      "examples": {
+        "max_updates": 4,
+        "max_examples": 8
+      }
+    },
+    "limits": {
+      "max_seconds_per_trial": 30,
+      "max_seconds_total": 60,
+      "max_total_updates": 600,
+      "max_total_examples": 100000,
+      "validation_examples": 4,
+      "validation_batch_size": 2,
+      "evaluate_every_updates": 1,
+      "max_grad_norm": 100000000.0,
+      "max_latent_abs": 100.0,
+      "max_reconstruction_ratio": 3.0,
+      "deterioration_patience": 2
+    }
+  },
+  "limitations": [
+    "Short success does not establish 30-epoch stability",
+    "AE pilot, no VAE stability claim",
+    "Fixed prefix of train/val, train shuffled once with common seed; not a representative full split"
+  ]
+}

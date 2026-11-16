@@ -1,0 +1,29 @@
+{
+  "source": "user_confirmed_same_128_validation_sequences; not re-evaluated locally in Phase 4",
+  "validation_examples": 128,
+  "sequence_length": 80,
+  "comparisons": [
+    {
+      "epoch": 8,
+      "reconstruction_nats_per_sequence": 160.400189,
+      "reconstruction_nats_per_character": 2.0050023625,
+      "marginal_nats_per_sequence": 252.388629,
+      "advantage_over_marginal_nats_per_sequence": 91.98844,
+      "swap_damage_nats_per_sequence": 359.958162,
+      "probability_tv": 0.662012
+    },
+    {
+      "epoch": 30,
+      "reconstruction_nats_per_sequence": 250.129855,
+      "reconstruction_nats_per_character": 3.1266231875,
+      "marginal_nats_per_sequence": 252.388629,
+      "advantage_over_marginal_nats_per_sequence": 2.2587740000000167,
+      "swap_damage_nats_per_sequence": 3.640303,
+      "probability_tv": 0.013355
+    }
+  ],
+  "reconstruction_increase_fraction": 0.5594112236364008,
+  "swap_utility_retained_fraction": 0.01011312809181418,
+  "probability_tv_retained_fraction": 0.02017335033201815,
+  "limitation": "Causal mechanism and temporal onset inside epochs8–15 not established by endpoint comparison."
+}

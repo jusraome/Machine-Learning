@@ -1,0 +1,12 @@
+{
+  "zip": "exports\\workshop4_colab_latent_phase3.zip",
+  "sha256": "99523682cdfe7d3cf52f0e73659a78b33fbb69d3cb8d22947f77a926265d7506",
+  "bytes": 1517139,
+  "members": 88,
+  "crc": "OK",
+  "expected_files_exact": true,
+  "datasets_or_checkpoints_included": false,
+  "all_notebook_cells_unexecuted": true,
+  "safe_extraction": true,
+  "extracted_cli_dry_run": true
+}

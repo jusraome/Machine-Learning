@@ -1,0 +1,15 @@
+{
+  "tests": 90,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 20.12417780002579,
+  "torch": "2.15.0+cpu",
+  "cuda_available": false,
+  "protected_source_files": 14,
+  "sources_unchanged": true,
+  "notebooks_ast_and_outputs": "OK",
+  "real_data_smoke_updates": 2,
+  "real_data_smoke_train_examples": 4,
+  "full_training_executed": false
+}

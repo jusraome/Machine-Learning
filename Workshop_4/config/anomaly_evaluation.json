@@ -1,0 +1,16 @@
+{
+  "seed": 42,
+  "normal_class": null,
+  "alpha": 0.05,
+  "calibration_fraction": 0.5,
+  "max_calibration": 2048,
+  "max_evaluation": 2048,
+  "max_test": 2048,
+  "per_speaker_cap": 256,
+  "batch_size": 128,
+  "read_batch_size": 4096,
+  "max_seconds": 600,
+  "expected_epoch": 8,
+  "primary_score": "brier_mse",
+  "evaluate_test": false
+}

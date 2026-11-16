@@ -1,0 +1,149 @@
+{
+  "pilot_only": true,
+  "execute": true,
+  "trials": [
+    {
+      "name": "reference_cpu_smoke__updates",
+      "variant": "reference_cpu_smoke",
+      "budget": "updates",
+      "config": {
+        "seed": 42,
+        "embedding_dim": 4,
+        "hidden_size": 8,
+        "latent_dim": 3,
+        "num_layers": 1,
+        "dropout": 0.0,
+        "batch_size": 2,
+        "learning_rate": 0.001,
+        "latent_activation": "identity",
+        "tensor_loader": true,
+        "grad_clip": 5.0
+      },
+      "budget_limits": {
+        "max_updates": 2,
+        "max_examples": 8
+      },
+      "target_updates": 2,
+      "target_examples": 4,
+      "budget_feasible": true,
+      "initial_state_sha256": "b1e20213b3a1668149b4233ea0afdf221edf8d98cb345de7fb9804b03120445b",
+      "updates": 2,
+      "examples": 4,
+      "status": "completed",
+      "reason": "matched_budget_completed",
+      "training_seconds": 0.18700000015087426,
+      "grad_norm_pre_mean": 30.197312060174994,
+      "grad_norm_pre_max": 30.724724475688348,
+      "grad_norm_post_max": 5.000000071814066,
+      "clipped_fraction": 1.0,
+      "train_reconstruction": 353.9453430175781,
+      "last_training_latent": {
+        "z_max_abs": 0.6048760414123535,
+        "raw_z_max_abs": 0.6048760414123535,
+        "z_rms": 0.408992376863945
+      },
+      "val_reconstruction": 354.969482421875,
+      "z_max_abs": 0.30208131670951843,
+      "z_rms": 0.20527002278175815,
+      "raw_z_max_abs": 0.30208131670951843,
+      "decoder_saturation_fraction": 0.0,
+      "h0_saturation_fraction": 0.0,
+      "latent_sensitivity": 0.09476584008042879,
+      "examples_per_second": 0.6305170239555742,
+      "training_examples_per_second": 21.390374314292742,
+      "total_seconds": 6.344000000040978,
+      "peak_gpu_allocated_bytes": null,
+      "final_state_sha256": "40d60fcca9ef584bc5c990c5fd637962a5f50b8cc7b925310bd5a37e2de78dae"
+    }
+  ],
+  "plan": {
+    "version": 1,
+    "defaults": {
+      "seed": 42,
+      "embedding_dim": 4,
+      "hidden_size": 8,
+      "latent_dim": 3,
+      "num_layers": 1,
+      "dropout": 0.0,
+      "batch_size": 2,
+      "learning_rate": 0.001,
+      "latent_activation": "identity",
+      "tensor_loader": true,
+      "grad_clip": 5.0
+    },
+    "variants": [
+      {
+        "name": "reference_cpu_smoke",
+        "changes": {}
+      }
+    ],
+    "budgets": {
+      "updates": {
+        "max_updates": 2,
+        "max_examples": 8
+      },
+      "examples": {
+        "max_updates": 4,
+        "max_examples": 8
+      }
+    },
+    "limits": {
+      "max_seconds_per_trial": 30,
+      "max_seconds_total": 60,
+      "max_total_updates": 600,
+      "max_total_examples": 100000,
+      "validation_examples": 4,
+      "validation_batch_size": 2,
+      "evaluate_every_updates": 1,
+      "max_grad_norm": 100000000.0,
+      "max_latent_abs": 100.0,
+      "max_reconstruction_ratio": 3.0,
+      "deterioration_patience": 2
+    }
+  },
+  "limitations": [
+    "Short success does not establish 30-epoch stability",
+    "AE pilot, no VAE stability claim",
+    "Fixed prefix of train/val, train shuffled once with common seed; not a representative full split"
+  ],
+  "status": "completed",
+  "reason": "",
+  "reference_evaluation": null,
+  "environment": {
+    "torch": "2.15.0+cpu",
+    "device": "cpu",
+    "gpu": null
+  },
+  "data_manifest": {
+    "data_contract": {
+      "version": 1,
+      "window_size": 80,
+      "vocab_sha256": "263bcc84ccfbadb701c4eb451977f75ef6e5ce18355e404720578401faed1ad6",
+      "splits_sha256": "3bf773282c10defea5061a4af3299ea0dda69288ea097e0ace9ace925e6d8c0c",
+      "dataset": "flwrlabs/shakespeare",
+      "revision": "2cfe3a5ba0d9b34634ade086803a479b2c2b8e11"
+    },
+    "files": {
+      "train": {
+        "sha256": "cba99d7579f146de83a17c1971045849959b45337c6952ad0dc866ca70da381d",
+        "rows": 2997217,
+        "size_bytes": 39993727
+      },
+      "val": {
+        "sha256": "dfcd491ba3c77d1566b4cff4dbe22d14203515beec7dac979f9933c78bfaafc0",
+        "rows": 583098,
+        "size_bytes": 8245842
+      }
+    },
+    "tokens": {
+      "unk_index": 0,
+      "pad_index": null,
+      "mask": "all_positions"
+    }
+  },
+  "common_train_ids_sha256": "299595ceb54ddc6eeb35105f3eb24d8d65fdafb4cad9ec1011ed7f5f14b144d5",
+  "common_val_ids_sha256": "ba90decd1c856fc55e30f7c7ed3e4bb26cdc9af48280a2bef446751d779b25db",
+  "total_seconds": 7.562999999849126,
+  "total_updates": 2,
+  "total_examples": 4
+}

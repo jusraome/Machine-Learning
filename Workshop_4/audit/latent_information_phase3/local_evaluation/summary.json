@@ -1,0 +1,53 @@
+{
+  "status": "completed",
+  "checkpoints": [],
+  "probes": [],
+  "plan": {
+    "phase": 3,
+    "settings": {
+      "seed": 42,
+      "val_examples": 128,
+      "batch_size": 128,
+      "max_updates": 24,
+      "learning_rate": 0.001,
+      "embedding_dim": 32,
+      "hidden_size": 128,
+      "latent_dim": 32,
+      "num_layers": 1,
+      "dropout": 0.0,
+      "max_seconds": 600,
+      "max_seconds_per_variant": 180
+    },
+    "checkpoints": {},
+    "short_probe": false,
+    "architectures": [],
+    "snapshots": [
+      0,
+      1,
+      3,
+      6,
+      12,
+      24
+    ],
+    "max_total_updates": 0,
+    "baseline": "all train x windows, add-alpha=0.5; never val/test fitting",
+    "device": "cpu",
+    "execute": true,
+    "limitations": [
+      "fixed validation prefix; possibly correlated overlapping windows and speakers",
+      "short probes use a fixed training prefix, not 30-epoch stability evidence",
+      "intervention utility is not an estimate of mutual information",
+      "zero z may be outside the learned latent distribution",
+      "reported T4 pilots cannot be recreated without their saved model weights"
+    ]
+  },
+  "val_tensor_sha256": "83afa75055b986dfdeb4e346ea588776b2a0ff9bb6ea745f4ccfa9c8085f65a9",
+  "data_contract": {
+    "version": 1,
+    "window_size": 80,
+    "vocab_sha256": "263bcc84ccfbadb701c4eb451977f75ef6e5ce18355e404720578401faed1ad6",
+    "splits_sha256": "3bf773282c10defea5061a4af3299ea0dda69288ea097e0ace9ace925e6d8c0c",
+    "dataset": "flwrlabs/shakespeare",
+    "revision": "2cfe3a5ba0d9b34634ade086803a479b2c2b8e11"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "defaults": {
+    "seed": 42,
+    "embedding_dim": 32,
+    "hidden_size": 128,
+    "latent_dim": 32,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "latent_activation": "identity",
+    "tensor_loader": true,
+    "grad_clip": 5.0
+  },
+  "variants": [
+    {"name": "reference_b128", "changes": {}},
+    {"name": "batch256", "changes": {"batch_size": 256}},
+    {"name": "batch512", "changes": {"batch_size": 512}},
+    {"name": "lr0003", "changes": {"learning_rate": 0.0003}},
+    {"name": "latent_tanh", "changes": {"latent_activation": "tanh"}, "optional": true}
+  ],
+  "budgets": {
+    "updates": {"max_updates": 24, "max_examples": 12288},
+    "examples": {"max_updates": 96, "max_examples": 12288}
+  },
+  "limits": {
+    "max_seconds_per_trial": 120,
+    "max_seconds_total": 600,
+    "max_total_updates": 600,
+    "max_total_examples": 100000,
+    "validation_examples": 128,
+    "validation_batch_size": 32,
+    "evaluate_every_updates": 12,
+    "max_grad_norm": 100000000.0,
+    "max_latent_abs": 100.0,
+    "max_reconstruction_ratio": 3.0,
+    "deterioration_patience": 2
+  }
+}

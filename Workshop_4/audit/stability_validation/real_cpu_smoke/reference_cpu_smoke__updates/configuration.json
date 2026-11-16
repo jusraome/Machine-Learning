@@ -1,0 +1,25 @@
+{
+  "name": "reference_cpu_smoke__updates",
+  "variant": "reference_cpu_smoke",
+  "budget": "updates",
+  "config": {
+    "seed": 42,
+    "embedding_dim": 4,
+    "hidden_size": 8,
+    "latent_dim": 3,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "batch_size": 2,
+    "learning_rate": 0.001,
+    "latent_activation": "identity",
+    "tensor_loader": true,
+    "grad_clip": 5.0
+  },
+  "budget_limits": {
+    "max_updates": 2,
+    "max_examples": 8
+  },
+  "target_updates": 2,
+  "target_examples": 4,
+  "budget_feasible": true
+}

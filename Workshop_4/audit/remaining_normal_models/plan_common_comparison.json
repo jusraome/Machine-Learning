@@ -1,0 +1,28 @@
+{
+  "operation": "common_normal_AE_VAE_development_comparison",
+  "execute": false,
+  "checkpoints": {
+    "ae_z64": "C:\\Users\\rulit\\Downloads\\Machine-Learning-Equipo\\Workshop_4\\audit\\remaining_normal_models\\untrained\\best_inference.pt"
+  },
+  "reference_protocol": null,
+  "config": {
+    "seed": 42,
+    "alpha": 0.05,
+    "primary_score": "brier_mse",
+    "max_calibration": 4096,
+    "max_evaluation": 8192,
+    "per_speaker_cap": 512,
+    "batch_size": 128,
+    "read_batch_size": 4096,
+    "max_seconds": 1800,
+    "diagnostic_examples": 128
+  },
+  "device": "cpu",
+  "test_access": "closed; no test mode exists",
+  "optimizer_steps": 0,
+  "primary_score": "brier_mse",
+  "model_selection": "normal-only model_selection role in independent completed training runs",
+  "cohort": "one shared new cohort for all supplied checkpoints",
+  "vae_inference": "posterior mu; reconstruction and KL separate; NLL+KL secondary, never MSE+KL",
+  "winner_selection": "none; development comparisons are descriptive"
+}

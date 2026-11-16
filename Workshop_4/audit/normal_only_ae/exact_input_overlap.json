@@ -1,0 +1,39 @@
+{
+  "scope": "all normal train x versus all role-eligible val x; model_selection/calibration normals, evaluation mixed; test not read",
+  "comparison": "SHA256 of exact x text only, independent of labels/speaker ID; near duplicates not assessed",
+  "normal_class": 1,
+  "normal_train_rows": 562253,
+  "unique_normal_train_inputs": 562251,
+  "roles": {
+    "model_selection": {
+      "eligible_rows": 28797,
+      "rows_matching_normal_train_input": 4
+    },
+    "calibration": {
+      "eligible_rows": 38147,
+      "rows_matching_normal_train_input": 0
+    },
+    "evaluation": {
+      "eligible_rows": 225536,
+      "rows_matching_normal_train_input": 60
+    }
+  },
+  "cross_validation_roles": [
+    {
+      "first": "model_selection",
+      "second": "calibration",
+      "identical_unique_inputs": 0
+    },
+    {
+      "first": "model_selection",
+      "second": "evaluation",
+      "identical_unique_inputs": 0
+    },
+    {
+      "first": "calibration",
+      "second": "evaluation",
+      "identical_unique_inputs": 0
+    }
+  ],
+  "no_exact_cross_role_or_train_input_overlap": false
+}

@@ -1,0 +1,9 @@
+{
+  "operation": "read_only_checkpoint_fidelity_audit",
+  "execute": false,
+  "checkpoint": "C:\\Users\\rulit\\Downloads\\Machine-Learning-Equipo\\Workshop_4\\audit\\best8_restore_anomalies\\historical_input_not_copied\\best.pt",
+  "metadata": null,
+  "comparison_checkpoint": null,
+  "optimizer_steps": 0,
+  "starts_training": false
+}

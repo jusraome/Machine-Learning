@@ -1,2 +1,8 @@
-# Only needed for Parquet I/O; metadata checks and core tests use stdlib.
-pyarrow>=14,<24
+# Phase 1 Parquet I/O; includes the existing local pyarrow 26.0.1 environment.
+pyarrow>=14,<27
+# Phase 2 recurrent AE/VAE and their numerical tests. No automatic installation.
+torch>=2.2,<3
+# Only needed to render training curves (available in standard Colab runtimes).
+matplotlib>=3.7,<4
+# Optional vectorized CPU loader.
+numpy>=1.26,<3

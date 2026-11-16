@@ -1,0 +1,9 @@
+{
+  "source": "paths provided by user; not accessible as local Windows files",
+  "historical_run": "/content/drive/MyDrive/Workshop_4/runs/workshop4_clipping_v2_prueba12/ae_z32/",
+  "logs": ["history.csv", "gradient_norms.csv", "nonfinite_events.jsonl", "metadata.json"],
+  "checkpoints": {"best": "checkpoints/best.pt", "best_epoch": 8, "last": "checkpoints/last.pt", "last_epoch": 30},
+  "availability": "must be verified after mounting Drive in Colab",
+  "ephemeral_directory_not_assumed_available": "/content/audit_ae_z32/",
+  "download_bundle": "three logs plus metadata.json only; excludes checkpoints"
+}

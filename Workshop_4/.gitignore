@@ -2,3 +2,8 @@
 *.pyc
 .pytest_cache/
 .venv/
+runs/
+checkpoints/
+tmp/
+exports/
+.ipynb_checkpoints/

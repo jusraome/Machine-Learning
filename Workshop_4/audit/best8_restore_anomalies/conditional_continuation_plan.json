@@ -1,0 +1,16 @@
+{
+  "operation": "single_original_stream_continuation_if_fidelity_is_established",
+  "executable": false,
+  "reason": "Actual historical best8 bytes, temporal optimizer alignment, data bytes and original backend have not been verified locally.",
+  "maximum_updates": 8,
+  "checkpoints_every_update": 1,
+  "diagnostic_validation_examples": 128,
+  "initial_checkpoint_required": true,
+  "initialization": "aligned original weights, complete Adam and RNG; never weights_only",
+  "configuration": "inherit verified original checkpoint configuration without changing learning rate or architecture",
+  "data_iterator": "original trainer epoch9 stream only if source is verified end-of-epoch8; no Phase4 diagnostic-prefix substitution",
+  "safety": "retain FP64 clipping, per-update finiteness, fixed-prefix CE/swap deterioration controls and immutable best preservation",
+  "outputs": "new directory only; historical inputs remain read-only",
+  "automatic_repetition": false,
+  "training_started": false
+}

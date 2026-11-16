@@ -1,0 +1,53 @@
+{
+  "name": "reference_cpu_smoke__updates",
+  "variant": "reference_cpu_smoke",
+  "budget": "updates",
+  "config": {
+    "seed": 42,
+    "embedding_dim": 4,
+    "hidden_size": 8,
+    "latent_dim": 3,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "batch_size": 2,
+    "learning_rate": 0.001,
+    "latent_activation": "identity",
+    "tensor_loader": true,
+    "grad_clip": 5.0
+  },
+  "budget_limits": {
+    "max_updates": 2,
+    "max_examples": 8
+  },
+  "target_updates": 2,
+  "target_examples": 4,
+  "budget_feasible": true,
+  "initial_state_sha256": "b1e20213b3a1668149b4233ea0afdf221edf8d98cb345de7fb9804b03120445b",
+  "updates": 2,
+  "examples": 4,
+  "status": "completed",
+  "reason": "matched_budget_completed",
+  "training_seconds": 0.18700000015087426,
+  "grad_norm_pre_mean": 30.197312060174994,
+  "grad_norm_pre_max": 30.724724475688348,
+  "grad_norm_post_max": 5.000000071814066,
+  "clipped_fraction": 1.0,
+  "train_reconstruction": 353.9453430175781,
+  "last_training_latent": {
+    "z_max_abs": 0.6048760414123535,
+    "raw_z_max_abs": 0.6048760414123535,
+    "z_rms": 0.408992376863945
+  },
+  "val_reconstruction": 354.969482421875,
+  "z_max_abs": 0.30208131670951843,
+  "z_rms": 0.20527002278175815,
+  "raw_z_max_abs": 0.30208131670951843,
+  "decoder_saturation_fraction": 0.0,
+  "h0_saturation_fraction": 0.0,
+  "latent_sensitivity": 0.09476584008042879,
+  "examples_per_second": 0.6305170239555742,
+  "training_examples_per_second": 21.390374314292742,
+  "total_seconds": 6.344000000040978,
+  "peak_gpu_allocated_bytes": null,
+  "final_state_sha256": "40d60fcca9ef584bc5c990c5fd637962a5f50b8cc7b925310bd5a37e2de78dae"
+}

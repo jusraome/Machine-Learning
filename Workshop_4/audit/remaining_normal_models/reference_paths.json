@@ -1,0 +1,12 @@
+{
+  "source": "paths provided by user on 2026-11-16",
+  "ae_z32_checkpoint": "/content/drive/MyDrive/Workshop_4/normal_only_ae/ae_z32_normal_only_20261116T134404_817936Z/best_inference.pt",
+  "reference_sha256": "/content/drive/MyDrive/Workshop_4/normal_only_ae/development_20261116T134404_817936Z/frozen_protocol.sha256",
+  "reference_json_expected": "/content/drive/MyDrive/Workshop_4/normal_only_ae/development_20261116T134404_817936Z/frozen_protocol.json",
+  "json_path_provenance": "paired JSON inferred from the standard .sha256 filename; both files checked after Drive mount",
+  "expected_best_epoch": 14,
+  "expected_best_global_updates": 60928,
+  "expected_development_examples": 7640,
+  "availability_verified_locally": false,
+  "test_closed": true
+}

@@ -1,0 +1,28 @@
+{
+  "source": "user-confirmed real Colab T4 run; not re-trained or evaluated locally",
+  "normal_training_examples": 562253,
+  "best_epoch": 14,
+  "best_global_updates": 60928,
+  "training_status": "completed",
+  "training_reason": "early_stopping_normal_selection",
+  "development_status": "completed",
+  "test_ready": true,
+  "test_executed": false,
+  "development_examples": 7640,
+  "models": {
+    "ae_z32_normal_only": {
+      "nll_roc_auc": 0.535611,
+      "brier_mse_roc_auc": 0.527281
+    },
+    "best8_historical": {
+      "nll_roc_auc": 0.502575,
+      "brier_mse_roc_auc": 0.50795
+    }
+  },
+  "paired_delta": {
+    "nll_roc_auc": 0.033035999999999954,
+    "brier_mse_roc_auc": 0.019330999999999987
+  },
+  "significance": "descriptive single-run differences; no uncertainty estimate or test winner",
+  "actual_checkpoint_and_cohort_available_locally": false
+}

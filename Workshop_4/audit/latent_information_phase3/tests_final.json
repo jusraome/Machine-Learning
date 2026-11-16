@@ -1,0 +1,9 @@
+{
+  "tests": 114,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 18.844000000040978,
+  "torch": "2.15.0+cpu",
+  "cuda_available": false
+}

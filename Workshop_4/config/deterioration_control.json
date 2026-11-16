@@ -1,0 +1,22 @@
+{
+  "seed": 42,
+  "batch_size": 128,
+  "max_updates": 64,
+  "evaluate_every": 8,
+  "max_seconds": 600,
+  "embedding_dim": 32,
+  "hidden_size": 128,
+  "latent_dim": 32,
+  "num_layers": 1,
+  "dropout": 0.0,
+  "learning_rate": 0.001,
+  "grad_clip": 5.0,
+  "val_examples": 128,
+  "ce_warning_ratio": 1.2,
+  "ce_severe_ratio": 2.0,
+  "swap_retention": 0.5,
+  "min_swap_utility": 1.0,
+  "patience": 2,
+  "max_raw_grad_norm": 100000000.0,
+  "max_latent_abs": 100.0
+}
