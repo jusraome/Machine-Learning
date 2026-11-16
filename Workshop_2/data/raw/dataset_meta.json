@@ -1,0 +1,19 @@
+{
+  "generated_utc": "2026-11-10T01:20:23+00:00",
+  "dataset": "flwrlabs/shakespeare",
+  "revision": "2cfe3a5ba0d9b34634ade086803a479b2c2b8e11",
+  "url": "https://huggingface.co/datasets/flwrlabs/shakespeare",
+  "license": "BSD-2-Clause",
+  "benchmark": "LEAF (arXiv:1812.01097)",
+  "n_rows": 4226158,
+  "columns": {
+    "character_id": "str",
+    "x": "str",
+    "y": "str"
+  },
+  "parquet_size_bytes": 51479973,
+  "checksums": {
+    "shakespeare.parquet": "1e0b5063aec9dd5be47aff2099b1bc242293549931424916272c2178a19ebc42"
+  },
+  "seed": 42
+}

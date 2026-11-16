@@ -1,1 +1,4 @@
-"""Workshop 2 - Character-level Transformer for Shakespeare next-character prediction."""
+"""Workshop 1 - Shakespeare next-character prediction.
+
+Downloading, checking, cleaning and splitting the `flwrlabs/shakespeare` dataset.
+"""

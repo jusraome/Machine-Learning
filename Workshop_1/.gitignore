@@ -1,14 +1,16 @@
-# LaTeX auxiliary files
-*.aux
-*.log
-*.out
-*.bbl
-*.blg
-*.fls
-*.fdb_latexmk
-*.synctex.gz
-*.toc
+# Entorno virtual
+.venv/
 
-# Data (rebuilt with the Workshop 1 pipeline)
+# Python
+__pycache__/
+*.pyc
+
+# Datos grandes: no van al repositorio (se reconstruyen con
+# `python -m src.download` y `python -m src.dataset --prepare`).
+# splits.json y vocab.json de data/ SÍ van al repositorio.
 data/raw/
 data/processed/
+
+# Artefactos de entrenamiento (se regeneran en cada ejecución)
+runs/
+checkpoints/

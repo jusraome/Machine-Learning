@@ -1,4 +1,12 @@
+# Entorno virtual
 .venv/
+
+# Artefactos de entrenamiento (Fase 4)
+runs/
+checkpoints/
+train.log
+tensorboard.log
+
+# Python
 __pycache__/
-.ipynb_checkpoints/
-data/
+*.pyc

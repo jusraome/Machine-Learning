@@ -1,0 +1,8 @@
+# SHA256 checksums for the files in data/raw/
+# generated: 2026-11-10T01:20:23+00:00
+# source:    flwrlabs/shakespeare (revision 2cfe3a5ba0d9b34634ade086803a479b2c2b8e11)
+#
+# The dataset provider publishes no checksums, so these are generated
+# locally to detect corruption of our own copy.
+# Verify with:  sha256sum -c CHECKSUMS.txt
+1e0b5063aec9dd5be47aff2099b1bc242293549931424916272c2178a19ebc42  shakespeare.parquet

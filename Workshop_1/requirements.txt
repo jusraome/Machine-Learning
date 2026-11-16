@@ -8,6 +8,8 @@ datasets==5.0.1          # downloading the dataset
 pandas==3.0.6            # data handling
 numpy==2.5.3             # numbers
 scikit-learn==1.9.1      # train/val/test split
+scipy==1.18.1           # matrices dispersas usadas por src/baselines.py
 matplotlib==3.11.2       # plots
 ipykernel==7.3.0         # running the notebook
 nbconvert==7.17.1        # running the notebook from the command line
+tensorboard==2.21.0      # logging opcional de src/baselines.py (sin torch)

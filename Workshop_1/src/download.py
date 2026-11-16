@@ -21,16 +21,30 @@ from pathlib import Path
 import pandas as pd
 from datasets import load_dataset
 
-from config import (
-    CHECKSUMS_FILE,
-    DATASET_META_FILE,
-    HF_DATASET,
-    HF_REVISION,
-    RAW_PARQUET,
-    SEED,
-    ensure_dirs,
-    set_seeds,
-)
+try:
+    # `python -m src.download` desde la raíz del proyecto
+    from src.config import (
+        CHECKSUMS_FILE,
+        DATASET_META_FILE,
+        HF_DATASET,
+        HF_REVISION,
+        RAW_PARQUET,
+        SEED,
+        ensure_dirs,
+        set_seeds,
+    )
+except ImportError:
+    # `python src/download.py` desde dentro de src/
+    from config import (
+        CHECKSUMS_FILE,
+        DATASET_META_FILE,
+        HF_DATASET,
+        HF_REVISION,
+        RAW_PARQUET,
+        SEED,
+        ensure_dirs,
+        set_seeds,
+    )
 
 set_seeds(SEED)
 

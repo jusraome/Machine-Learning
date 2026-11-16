@@ -1,0 +1,22 @@
+# Workshop 2 - dependencias para GPU AMD Radeon (ROCm)
+#
+# IMPORTANTE: este archivo NO incluye torch. Instálalo en este orden:
+#
+#   1) Wheel de PyTorch para ROCm (RX 9060 XT = gfx1200), desde el índice de AMD:
+#      python -m pip install --index-url https://stable.repo.amd.com/rocm/whl-next/ \
+#          "torch[device-gfx1200]==2.14.0+rocm10.1.0"
+#
+#   2) Resto de dependencias (este archivo):
+#      python -m pip install -r requirements-amd.txt
+#
+# NOTA: no uses requirements.txt en una máquina AMD: su línea torch==2.14.1
+# reinstalaría el wheel genérico (CUDA/CPU) y la GPU volvería a ser ignorada.
+
+datasets==5.0.1          # downloading the dataset
+pandas==3.0.6            # data handling
+numpy==2.5.3             # numbers
+scikit-learn==1.9.1      # metrics (Accuracy, F1, etc.)
+matplotlib==3.11.2       # plots
+ipykernel==7.3.0         # running notebooks
+nbconvert==7.17.1         # notebook processing
+tensorboard==2.21.0      # training monitoring (2.18 rompe en Python 3.14)

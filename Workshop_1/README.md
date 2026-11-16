@@ -4,6 +4,10 @@ Downloading, exploring and preprocessing the `flwrlabs/shakespeare` dataset, wit
 avoids data leakage.
 
 **Course:** Machine Learning — Universidad Distrital
+**Status:** Steps 1–3 done (download, EDA, cleaning + split), plus the baseline
+models in `src/baselines.py` (majority class, n-gram lookup table, logistic
+regression, Naive Bayes, random forest). See
+[Out of scope / Next steps](#out-of-scope--next-steps).
 
 ---
 
@@ -280,7 +284,8 @@ on train only.
 
 `data/processed/*.parquet` contains `character_id`, `x`, `y` and a new **`y_id`** column: the
 target's index in the vocabulary, or 0 (`<UNK>`) if it never appeared in train. `x` is kept as
-plain text.
+plain text on purpose — turning it into model input is feature extraction, which is out of scope
+here.
 
 ---
 
@@ -331,3 +336,26 @@ characters, changing one window produces something very close to a changed versi
 neighbours. The **real** increase in variety is much smaller than the 4.2 M row count suggests, so
 the amount of augmentation should be tuned against the held-out characters (§6.2) rather than
 assumed to help just because the dataset is large.
+
+---
+
+## Out of scope / Next steps
+
+Not done at this stage, on purpose:
+
+- [ ] **`src/features.py` — turning `x` into model input.** Partly covered by
+      `src/baselines.py` (one-hot posicional + n-gramas de caracteres). A
+      separate module is still useful if the feature stage grows.
+- [x] **`src/baselines.py` — baseline models.** Implemented: majority class,
+      an n-gram lookup table with backoff (built on the full training split),
+      logistic regression and Naive Bayes over one-hot + character n-grams,
+      and a random forest over the one-hot features. Metrics include
+      accuracy, macro/weighted precision-recall-F1, balanced accuracy,
+      macro AUC-ROC, log-loss in bits (vs. the 4.5002-bit entropy) and
+      top-3 accuracy.
+- [ ] **Training and evaluation.** Cross-entropy per-class reporting and
+      top-k beyond k=3 are still open.
+- [ ] **Implementing the augmentation** described in §8.
+- [ ] **The PDF report.** Sections 5 and 6 of this README, plus the figures in
+      `reports/figures/`, are the material to write it from. Baseline results
+      live in `checkpoints/baselines_summary.csv` and in `runs/`.
