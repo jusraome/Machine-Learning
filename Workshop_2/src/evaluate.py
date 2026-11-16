@@ -7,7 +7,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.metrics import f1_score
 
-from .model import CharTransformer
+from model import CharTransformer
 
 BASE_DIR = Path(__file__).resolve().parent
 WORKSHOP_DIR = BASE_DIR.parent
