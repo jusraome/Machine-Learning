@@ -21,7 +21,7 @@ from pathlib import Path
 import pandas as pd
 from datasets import load_dataset
 
-from config import (
+from src.config import (
     CHECKSUMS_FILE,
     DATASET_META_FILE,
     HF_DATASET,
