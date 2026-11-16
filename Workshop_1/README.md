@@ -4,8 +4,6 @@ Downloading, exploring and preprocessing the `flwrlabs/shakespeare` dataset, wit
 avoids data leakage.
 
 **Course:** Machine Learning — Universidad Distrital
-**Status:** Steps 1–3 done (download, EDA, cleaning + split). Models are out of scope; see
-[Out of scope / Next steps](#out-of-scope--next-steps).
 
 ---
 
@@ -282,8 +280,7 @@ on train only.
 
 `data/processed/*.parquet` contains `character_id`, `x`, `y` and a new **`y_id`** column: the
 target's index in the vocabulary, or 0 (`<UNK>`) if it never appeared in train. `x` is kept as
-plain text on purpose — turning it into model input is feature extraction, which is out of scope
-here.
+plain text.
 
 ---
 
@@ -334,21 +331,3 @@ characters, changing one window produces something very close to a changed versi
 neighbours. The **real** increase in variety is much smaller than the 4.2 M row count suggests, so
 the amount of augmentation should be tuned against the held-out characters (§6.2) rather than
 assumed to help just because the dataset is large.
-
----
-
-## Out of scope / Next steps
-
-Not done at this stage, on purpose:
-
-- [ ] **`src/features.py` — turning `x` into model input.** One-hot or integer encoding, n-gram
-      counts, embedding-ready arrays. `data/vocab.json` and the `y_id` column are the starting
-      point.
-- [ ] **`src/baselines.py` — baseline models.** At least: always predict the most frequent class
-      (known score: **18.74%**), a model that looks up the previous character (the k=1 entropy of
-      3.5288 bits limits how well it can do), and logistic regression on the last few characters.
-- [ ] **Training and evaluation.** Report macro F1, top-k accuracy, per-class recall and
-      cross-entropy as well as accuracy, for the reasons in §5.
-- [ ] **Implementing the augmentation** described in §8.
-- [ ] **The PDF report.** Sections 5 and 6 of this README, plus the figures in `reports/figures/`,
-      are the material to write it from.
