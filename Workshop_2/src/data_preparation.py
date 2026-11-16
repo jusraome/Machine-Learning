@@ -4,30 +4,17 @@ import numpy as np
 from pathlib import Path
 
 
-#Splitted data path
-
-
-PROJECT_ROOT = Path.cwd()
-OUTPUT_DIR = PROJECT_ROOT / "Workshop_2" / "data"
-
-if not (PROJECT_ROOT / "Workshop_1" / "src" / "dataset.py").exists():
-    PROJECT_ROOT = PROJECT_ROOT.parent
+# Paths are based on this file, so the script works from any current directory.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+WORKSHOP_DIR = Path(__file__).resolve().parents[1]
+OUTPUT_DIR = WORKSHOP_DIR / "data" / "processed"
 
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
     
 from Workshop_1.src.dataset import load_split
 
-#tokenizer path
-if not (PROJECT_ROOT / "Workshop_2" / "transformer").exists():
-    PROJECT_ROOT = PROJECT_ROOT.parent
-
-TOKENIZER_DIR = PROJECT_ROOT / "Workshop_2" / "transformer"
-
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
-
-from Workshop_2.transformer.tokenizer import Tokenizer
+from .tokenizer import Tokenizer
 
 train_df = load_split("train")
 test_df = load_split("test")

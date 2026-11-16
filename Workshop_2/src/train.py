@@ -1,4 +1,5 @@
 from pathlib import Path
+import csv
 
 import torch 
 import torch.nn as nn 
@@ -8,14 +9,18 @@ from sklearn.metrics import f1_score
 from data_loader import train_loader, val_loader
 from model import CharTransformer
 
-CHEKPOINT_DIR = Path(__file__).resolve().parent / "checkpoints"
-CHECKPOINT_PATH = CHEKPOINT_DIR / "model_best.pt"
+WORKSHOP_DIR = Path(__file__).resolve().parents[1]
+CHECKPOINT_DIR = WORKSHOP_DIR / "checkpoints"
+CHECKPOINT_PATH = CHECKPOINT_DIR / "model_best.pt"
+RUNS_DIR = WORKSHOP_DIR / "runs"
+HISTORY_PATH = RUNS_DIR / "training_history.csv"
 
 EPOCHS = 4
 NUM_CLASSES = 76 
 best_val_f1 = -1.0
 
-CHEKPOINT_DIR.mkdir(parents=True,exist_ok=True)
+CHECKPOINT_DIR.mkdir(parents=True,exist_ok=True)
+RUNS_DIR.mkdir(parents=True, exist_ok=True)
 #normal gpu verification 
 
 if torch.cuda.is_available(): 
@@ -44,6 +49,8 @@ scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
 
 
 #! training -validation 
+
+history = []
 
 for epoch in range(EPOCHS): 
     #train
@@ -119,6 +126,21 @@ for epoch in range(EPOCHS):
         average="macro", 
         zero_division=0
     )
+
+    history.append({
+        "epoch": epoch + 1,
+        "train_loss": train_loss,
+        "train_accuracy": train_acc,
+        "val_loss": val_loss,
+        "val_accuracy": val_acc,
+        "val_macro_f1": val_macro_f1,
+        "learning_rate": optimizer.param_groups[0]["lr"],
+    })
+
+    with HISTORY_PATH.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=history[0].keys())
+        writer.writeheader()
+        writer.writerows(history)
 
     print(
         f'epoch: {epoch+1}/{EPOCHS}\n', 

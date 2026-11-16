@@ -1,12 +1,10 @@
-import os
 from pathlib import Path
-from model import CharTransformer
 
 import numpy as np 
 import torch
 from torch.utils.data import Dataset, DataLoader
 
-DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data" / "processed"
 
 
 class ShakespeareDataset: 

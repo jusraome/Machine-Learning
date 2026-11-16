@@ -4,7 +4,7 @@ from model import CharTransformer
 from tokenizer import Tokenizer
 
 BASE_DIR = Path(__file__).resolve().parent
-CHECKPOINT_PATH = BASE_DIR / "checkpoints" / "model_best.pt"
+CHECKPOINT_PATH = BASE_DIR.parent / "checkpoints" / "model_best.pt"
 CONTEXT_LENGTH = 80
 
 

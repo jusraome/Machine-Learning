@@ -7,15 +7,15 @@ import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.metrics import f1_score
 
-from model import CharTransformer
+from .model import CharTransformer
 
 BASE_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = BASE_DIR.parents[1]
+WORKSHOP_DIR = BASE_DIR.parent
 
 
-TEST_PATH = PROJECT_ROOT / "Workshop_2" / "data" / "test.npz"
-CHECKPOINT_PATH = BASE_DIR / "checkpoints" / "model_best.pt"
-RESULTS_PATH = BASE_DIR / "results" / "test_metrics.json"
+TEST_PATH = WORKSHOP_DIR / "data" / "processed" / "test.npz"
+CHECKPOINT_PATH = WORKSHOP_DIR / "checkpoints" / "model_best.pt"
+RESULTS_PATH = WORKSHOP_DIR / "results" / "test_metrics.json"
 
 BATCH_SIZE = 64
 NUM_CLASSES = 76
