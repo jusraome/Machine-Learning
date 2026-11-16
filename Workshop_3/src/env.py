@@ -1,8 +1,8 @@
-"""Gymnasium environment: controllable text generation with the Workshop 2 LSTM.
+"""Gymnasium environment: controllable text generation with the Workshop 2 Transformer.
 
-At every step the Workshop 2 LSTM proposes its K = 5 most likely next
+At every step the Workshop 2 Transformer proposes its K = 5 most likely next
 characters and the agent chooses one of them. The goal is to write real
-Shakespeare words without repeating them (the LSTM alone, choosing always the
+Shakespeare words without repeating them (the Transformer alone, choosing always the
 most likely character, falls into loops like "I will be but the prize. I will
 be but the prize").
 
@@ -33,7 +33,7 @@ from torch import nn
 SEED = 42
 ROOT = Path(__file__).resolve().parents[1]  # Workshop_3/
 WORKSHOP1 = ROOT.parent / "Workshop_1"
-LSTM_CHECKPOINT = ROOT.parent / "Workshop_2" / "checkpoints" / "model_best.pt"
+W2_CHECKPOINT = ROOT.parent / "Workshop_2" / "checkpoints" / "model_best.pt"
 WORDS_FILE = ROOT / "data" / "words.txt"
 FIGURES_DIR = ROOT / "reports" / "figures"
 
@@ -76,28 +76,30 @@ def load_dictionary():
 
 
 # ---------------------------------------------------------------- Workshop 2 language model
-class CharLSTM(nn.Module):
+class CharTransformer(nn.Module):
     """Same architecture as Workshop 2 (only used for inference here)."""
 
-    def __init__(self, vocab_size, embedding_dim=8, hidden_size=256, num_layers=2, dropout=0.1):
+    def __init__(self, vocab_size, d_model=128, n_heads=4, n_layers=2, dropout=0.1, max_len=80):
         super().__init__()
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
-        self.lstm = nn.ModuleList(
-            [nn.LSTM(embedding_dim if i == 0 else hidden_size, hidden_size, batch_first=True)
-             for i in range(num_layers)])
-        self.dropout = nn.Dropout(dropout)
-        self.fc = nn.Linear(hidden_size, vocab_size)
+        self.token_embedding = nn.Embedding(vocab_size, d_model)
+        self.position_embedding = nn.Embedding(max_len, d_model)
+        block = nn.TransformerEncoderLayer(d_model, n_heads, dim_feedforward=4 * d_model,
+                                           dropout=dropout, batch_first=True, norm_first=True)
+        self.blocks = nn.TransformerEncoder(block, n_layers, norm=nn.LayerNorm(d_model),
+                                            enable_nested_tensor=False)
+        self.fc = nn.Linear(d_model, vocab_size)
 
     def forward(self, x):
-        out = self.embedding(x)
-        for layer in self.lstm:
-            out, (h_n, _) = layer(out)
-        return self.fc(h_n[-1])
+        positions = torch.arange(x.size(1), device=x.device)
+        h = self.token_embedding(x) + self.position_embedding(positions)
+        mask = nn.Transformer.generate_square_subsequent_mask(x.size(1), device=x.device)
+        h = self.blocks(h, mask=mask, is_causal=True)
+        return self.fc(h[:, -1])
 
 
 def load_language_model(device):
-    ckpt = torch.load(LSTM_CHECKPOINT, map_location="cpu", weights_only=False)
-    model = CharLSTM(**ckpt["model_hparams"])
+    ckpt = torch.load(W2_CHECKPOINT, map_location="cpu", weights_only=False)
+    model = CharTransformer(**ckpt["model_hparams"])
     model.load_state_dict(ckpt["state_dict"])
     return model.to(device).eval(), ckpt["vocab"]
 
@@ -123,7 +125,7 @@ class TextGenerationEnv(gym.Env):
     # --- helpers
     @torch.no_grad()
     def _update_candidates(self):
-        """Ask the LSTM for its top-5 next characters (never <UNK>)."""
+        """Ask the Transformer for its top-5 next characters (never <UNK>)."""
         text = (self.context + self.generated)[-80:]
         ids = torch.tensor([[self.vocab["stoi"].get(c, 0) for c in text]], device=self.device)
         probs = self.lm(ids).softmax(-1)[0]

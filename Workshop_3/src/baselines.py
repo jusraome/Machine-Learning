@@ -1,9 +1,9 @@
 """Baseline strategies, evaluated on the same contexts as the agent.
 
 - random: chooses one of the 5 candidates uniformly at random.
-- greedy LSTM: always chooses the most likely character. This is the Workshop 2
+- greedy Transformer: always chooses the most likely character. This is the Workshop 2
   model used on its own, without RL.
-- sampling LSTM: samples a candidate with the LSTM probabilities (renormalised
+- sampling Transformer: samples a candidate with the Transformer probabilities (renormalised
   over the top 5).
 """
 
@@ -25,8 +25,8 @@ def sampling_policy(obs, rng):
     return int(rng.choice(K, p=probs / probs.sum()))
 
 
-BASELINES = {"random": random_policy, "greedy LSTM (W2)": greedy_policy,
-             "sampling LSTM (W2)": sampling_policy}
+BASELINES = {"random": random_policy, "greedy Transformer (W2)": greedy_policy,
+             "sampling Transformer (W2)": sampling_policy}
 
 
 def run_episodes(env, policy, n_episodes, seed=42):
@@ -53,6 +53,6 @@ def run_episodes(env, policy, n_episodes, seed=42):
         "repeated_word_rate": stats["repeated"] / words,
         "invalid_word_rate": stats["invalid"] / words,
         "words_per_episode": words / n_episodes,
-        "mean_log_prob": float(np.mean(log_probs)),  # fluency according to the LSTM
+        "mean_log_prob": float(np.mean(log_probs)),  # fluency according to the Transformer
         "texts": texts,
     }

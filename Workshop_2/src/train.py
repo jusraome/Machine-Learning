@@ -1,23 +1,21 @@
-"""Train the character-level LSTM.
+"""Train the character-level Transformer.
 
 Hyperparameter search (3 learning rates x 2 regularisation settings, short
 runs on a subsample of train, evaluated on validation):
 
-    python -m src.train --search --epochs 4 --max-train-samples 300000 --max-val-samples 100000
+    python -m src.train --search --epochs 3 --max-train-samples 200000 --max-val-samples 100000
 
-Final training (the two variants: without and with class weights):
+Final training (best configuration, with class weights for the imbalance):
 
-    python -m src.train --run-name lstm_noweights --epochs 10 --max-train-samples 1500000
-    python -m src.train --run-name lstm_weighted  --epochs 10 --max-train-samples 1500000 --class-weights
+    python -m src.train --run-name transformer --epochs 8 --max-train-samples 1000000 --class-weights --lr <best>
 
 Each run logs loss and metrics per epoch to TensorBoard (runs/<run-name>).
-The final runs also save their learning curves in reports/figures/. The best epoch (highest validation macro-F1) is saved to
-checkpoints/<run-name>.pt, and copied to checkpoints/model_best.pt if it is
-better than the current one. The test split is not used here.
+The final run also saves its learning curves in reports/figures/ and its best
+epoch (highest validation macro-F1) to checkpoints/model_best.pt. The test
+split is not used here.
 """
 
 import argparse
-import shutil
 import time
 
 import matplotlib
@@ -31,7 +29,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score, roc_auc_sco
 from torch import nn
 from torch.utils.tensorboard import SummaryWriter
 
-from src.model import (BEST_CHECKPOINT, ROOT, SEED, UNK_INDEX, WINDOW_SIZE, CharLSTM, get_device,
+from src.model import (BEST_CHECKPOINT, ROOT, SEED, UNK_INDEX, WINDOW_SIZE, CharTransformer, get_device,
                        load_split, read_vocab, set_seeds)
 
 PROCESSED_DIR = ROOT / "data" / "processed"  # cache of the encoded data (not in git)
@@ -136,7 +134,7 @@ def train(args, vocab, data, device, save=True):
     auc_idx = subsample(len(x_val), AUC_VAL_SAMPLES)
     auc_idx = slice(None) if auc_idx is None else auc_idx
 
-    model = CharLSTM(vocab_size, dropout=args.dropout).to(device)
+    model = CharTransformer(vocab_size, dropout=args.dropout).to(device)
     weights = class_weights(y_train, vocab_size).to(device) if args.class_weights else None
     criterion = nn.CrossEntropyLoss(weight=weights)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
@@ -213,7 +211,7 @@ def train(args, vocab, data, device, save=True):
 
 
 def save_checkpoint(model, args, vocab, data, device, result):
-    """Save checkpoints/<run-name>.pt; copy it to model_best.pt if it is better."""
+    """Save the best epoch to checkpoints/model_best.pt with its final metrics."""
     # final train (fixed subsample) and validation metrics of the best epoch
     x_train, y_train = data["train"]
     idx = subsample(len(x_train), TRAIN_EVAL_SAMPLES)
@@ -242,17 +240,8 @@ def save_checkpoint(model, args, vocab, data, device, result):
         "history": result["history"],
     }
     CHECKPOINTS_DIR.mkdir(parents=True, exist_ok=True)
-    path = CHECKPOINTS_DIR / f"{args.run_name}.pt"
-    torch.save(checkpoint, path)
-    print(f"saved {path.name} (epoch {best['epoch']}, val macro-F1 {best['val_f1_macro']:.4f})")
-
-    if BEST_CHECKPOINT.exists():
-        current = torch.load(BEST_CHECKPOINT, weights_only=False)["val_metric"]["value"]
-        if best["val_f1_macro"] <= current:
-            print(f"model_best.pt kept (val macro-F1 {current:.4f})")
-            return
-    shutil.copyfile(path, BEST_CHECKPOINT)
-    print(f"{args.run_name} copied to model_best.pt")
+    torch.save(checkpoint, BEST_CHECKPOINT)
+    print(f"saved model_best.pt (epoch {best['epoch']}, val macro-F1 {best['val_f1_macro']:.4f})")
 
 
 def plot_learning_curves(history, run_name):
@@ -301,7 +290,7 @@ def search(args, vocab, data, device):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--epochs", type=int, default=10)
+    parser.add_argument("--epochs", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=512)
     parser.add_argument("--lr", type=float, default=3e-3)
     parser.add_argument("--weight-decay", type=float, default=1e-4)
@@ -310,7 +299,7 @@ def main():
     parser.add_argument("--max-train-samples", type=int, default=None)
     parser.add_argument("--max-val-samples", type=int, default=None)
     parser.add_argument("--device", default=None, help="cuda or cpu (default: cuda if available)")
-    parser.add_argument("--run-name", default="lstm_noweights")
+    parser.add_argument("--run-name", default="transformer")
     parser.add_argument("--search", action="store_true", help="run the hyperparameter search")
     args = parser.parse_args()
 

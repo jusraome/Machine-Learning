@@ -117,12 +117,15 @@ def plot_curves(history, baselines_val):
     for name, g in h.groupby("config", sort=False):
         axes[0].plot(g["episode"], g["return"].rolling(50, min_periods=1).mean(), label=name)
         v = g.dropna(subset=["val_return"])
-        axes[1].plot(v["steps"], v["val_return"], "o-", label=name)
+        smoothed = v["val_return"].rolling(3, min_periods=1).mean()  # last 3 evaluations
+        line, = axes[1].plot(v["steps"], smoothed, "-", label=name)
+        axes[1].plot(v["steps"], v["val_return"], "o", color=line.get_color(), alpha=0.35)
         axes[2].plot(g["episode"], g["epsilon"], label=name)
     for (label, value), style in zip(baselines_val.items(), [":", "--", "-."]):
         axes[1].axhline(value, color="gray", linestyle=style, label=label)
     axes[0].set(title="Training return (moving average of 50 episodes)", xlabel="episode")
-    axes[1].set(title="Validation return vs environment steps", xlabel="environment steps")
+    axes[1].set(title="Validation return (dots) and smoothed, last 3 evals (line)",
+                xlabel="environment steps")
     axes[2].set(title="Exploration rate (epsilon)", xlabel="episode")
     for ax in axes:
         ax.grid(alpha=0.3)
@@ -155,11 +158,14 @@ def main():
         best, hist = train(name, CONFIGS[name], args.episodes, train_env, val_env, device)
         save_if_best(name, CONFIGS[name], best)
         history += hist
-        # first number of steps where validation return beats the greedy LSTM
+        # first number of steps where validation return beats the greedy Transformer
         beat = [r["steps"] for r in hist
-                if r["val_return"] > baselines_val["greedy LSTM (W2)"]]
+                if r["val_return"] > baselines_val["greedy Transformer (W2)"]]
+        val = [r["val_return"] for r in hist if not np.isnan(r["val_return"])]
         summary.append({"config": name, **CONFIGS[name],
-                        "best_val_return": best["val_return"], "best_episode": best["episode"],
+                        "best_val_return": best["val_return"],
+                        "final_smoothed_val_return": np.mean(val[-3:]),  # mean of last 3 evals
+                        "best_episode": best["episode"],
                         "steps_to_beat_greedy": beat[0] if beat else None,
                         "minutes": round(best["minutes"], 1)})
 

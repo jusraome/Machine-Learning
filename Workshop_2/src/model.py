@@ -1,29 +1,28 @@
-"""Character-level LSTM for next-character prediction.
+"""Character-level Transformer language model for next-character prediction.
 
-Architecture (same as the LEAF reference model for Shakespeare):
+Architecture (a small decoder-only Transformer, like GPT, at character level):
 
     x (batch, 80) character ids
-    -> Embedding(76, 8)          -> (batch, 80, 8)
-    -> LSTM(8 -> 256)            -> (batch, 80, 256)
-    -> Dropout
-    -> LSTM(256 -> 256)          -> (batch, 80, 256)
-    -> last hidden state         -> (batch, 256)
-    -> Dropout
-    -> Linear(256 -> 76)         -> (batch, 76) logits (softmax is inside the loss)
+    -> token embedding (76 -> 128) + position embedding (80 -> 128)   (batch, 80, 128)
+    -> 2 Transformer blocks: causal self-attention (4 heads) + feed-forward (128 -> 512 -> 128),
+       each with LayerNorm, residual connections and dropout             (batch, 80, 128)
+    -> LayerNorm, take the LAST position                                (batch, 128)
+    -> Linear(128 -> 76)                                                (batch, 76) logits
 
-Why an LSTM: text is a sequence, and the next character depends on the
-previous ones. The LSTM keeps a hidden state while it reads the 80 characters,
-and its gates let it remember information for many steps.
+Why a Transformer: our team's assignment for Workshop 2 is a Transformer-based
+language model. Self-attention lets every position look directly at all the
+previous characters of the window (no information has to pass step by step
+like in an RNN), and all positions are processed in parallel, so it trains fast
+on a GPU. The causal mask makes each position see only the characters before it,
+as in a language model.
 
 Alternatives we considered:
-- Simple RNN: the gradient vanishes over 80 steps, so it forgets quickly.
-- GRU: very similar to the LSTM; we kept the LSTM because it is the reference
-  model of the benchmark, so our results can be compared with LEAF.
-- Transformer: too expensive for our hardware (GTX 1650 with 4 GB).
+- LSTM / GRU: read the text one character at a time; slower to train and the
+  information from far characters must pass through many steps.
 - 1D CNN: only sees as much context as its kernel size allows.
-
-No transfer learning: there is no pre-trained model for this 76-character
-vocabulary, so the model is trained from scratch.
+- Pre-trained Transformers (GPT-2, BERT): they use sub-word tokens, not our
+  76-character vocabulary, and are too large for our GPU (GTX 1650, 4 GB),
+  so the model is trained from scratch (no transfer learning).
 
 Run `python -m src.model` to print the architecture and test a forward pass.
 """
@@ -72,46 +71,27 @@ def encode_text(text, stoi):
     return [stoi.get(c, UNK_INDEX) for c in text]
 
 
-class CharLSTM(nn.Module):
-    def __init__(self, vocab_size, embedding_dim=8, hidden_size=256, num_layers=2, dropout=0.2):
+class CharTransformer(nn.Module):
+    def __init__(self, vocab_size, d_model=128, n_heads=4, n_layers=2, dropout=0.1,
+                 max_len=WINDOW_SIZE):
         super().__init__()
-        self.hparams = {"vocab_size": vocab_size, "embedding_dim": embedding_dim,
-                        "hidden_size": hidden_size, "num_layers": num_layers, "dropout": dropout}
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
-        # Two single-layer LSTMs with dropout in between. This is the same as
-        # nn.LSTM(num_layers=2, dropout=p), but that version crashed on our
-        # Windows + CUDA setup at the end of training.
-        self.lstm = nn.ModuleList(
-            [nn.LSTM(embedding_dim if i == 0 else hidden_size, hidden_size, batch_first=True)
-             for i in range(num_layers)]
-        )
-        self.dropout = nn.Dropout(dropout)
-        self.fc = nn.Linear(hidden_size, vocab_size)
-        self.init_weights()
-
-    def init_weights(self):
-        """Xavier for input weights, orthogonal for recurrent weights,
-        forget-gate bias = 1 so the LSTM remembers by default at the start."""
-        h = self.hparams["hidden_size"]
-        for name, param in self.lstm.named_parameters():
-            if "weight_ih" in name:
-                nn.init.xavier_uniform_(param)
-            elif "weight_hh" in name:
-                for gate in param.data.chunk(4, dim=0):  # 4 gates stacked
-                    nn.init.orthogonal_(gate)
-            elif "bias" in name:
-                nn.init.zeros_(param)
-                param.data[h:2 * h] = 0.5  # forget gate (bias_ih + bias_hh = 1)
-        nn.init.xavier_uniform_(self.fc.weight)
-        nn.init.zeros_(self.fc.bias)
+        self.hparams = {"vocab_size": vocab_size, "d_model": d_model, "n_heads": n_heads,
+                        "n_layers": n_layers, "dropout": dropout, "max_len": max_len}
+        self.token_embedding = nn.Embedding(vocab_size, d_model)
+        self.position_embedding = nn.Embedding(max_len, d_model)
+        block = nn.TransformerEncoderLayer(d_model, n_heads, dim_feedforward=4 * d_model,
+                                           dropout=dropout, batch_first=True, norm_first=True)
+        self.blocks = nn.TransformerEncoder(block, n_layers, norm=nn.LayerNorm(d_model),
+                                            enable_nested_tensor=False)
+        self.fc = nn.Linear(d_model, vocab_size)
 
     def forward(self, x):
-        out = self.embedding(x)
-        for i, layer in enumerate(self.lstm):
-            if i > 0:
-                out = self.dropout(out)
-            out, (h_n, _) = layer(out)
-        return self.fc(self.dropout(h_n[-1]))  # last hidden state of the top layer
+        positions = torch.arange(x.size(1), device=x.device)
+        h = self.token_embedding(x) + self.position_embedding(positions)
+        # causal mask: position i can only attend to positions <= i
+        mask = nn.Transformer.generate_square_subsequent_mask(x.size(1), device=x.device)
+        h = self.blocks(h, mask=mask, is_causal=True)
+        return self.fc(h[:, -1])  # the last position predicts the next character
 
 
 def count_parameters(model):
@@ -121,12 +101,14 @@ def count_parameters(model):
 def main():
     set_seeds()
     vocab_size = read_vocab()["size"]
-    model = CharLSTM(vocab_size)
+    model = CharTransformer(vocab_size)
     print(model)
     print("\nParameters per layer:")
-    for name, module in [("embedding", model.embedding), ("lstm", model.lstm), ("fc", model.fc)]:
-        print(f"  {name:10s} {count_parameters(module):>9,}")
-    print(f"  {'total':10s} {count_parameters(model):>9,} (all trainable)")
+    for name, module in [("token_embedding", model.token_embedding),
+                         ("position_embedding", model.position_embedding),
+                         ("transformer_blocks", model.blocks), ("fc", model.fc)]:
+        print(f"  {name:20s} {count_parameters(module):>9,}")
+    print(f"  {'total':20s} {count_parameters(model):>9,} (all trainable)")
 
     # Forward pass on a random batch to check the shapes.
     batch = torch.randint(0, vocab_size, (4, WINDOW_SIZE))

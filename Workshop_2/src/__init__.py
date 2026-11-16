@@ -1,1 +1,1 @@
-"""Workshop 2 - Character-level LSTM for Shakespeare next-character prediction."""
+"""Workshop 2 - Character-level Transformer for Shakespeare next-character prediction."""

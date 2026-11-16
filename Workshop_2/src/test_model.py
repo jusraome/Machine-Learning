@@ -13,7 +13,7 @@ import argparse
 import numpy as np
 import torch
 
-from src.model import (BEST_CHECKPOINT, SEED, WINDOW_SIZE, CharLSTM, encode_text, get_device,
+from src.model import (BEST_CHECKPOINT, SEED, WINDOW_SIZE, CharTransformer, encode_text, get_device,
                        load_split, set_seeds)
 
 DEFAULT_TEXT = "Shall I compare thee to a summer's day? Thou art more lovely and more temperate. Rough wi"
@@ -21,15 +21,18 @@ DEFAULT_TEXT = "Shall I compare thee to a summer's day? Thou art more lovely and
 
 def load_checkpoint(path=BEST_CHECKPOINT):
     ckpt = torch.load(path, map_location="cpu", weights_only=False)
-    model = CharLSTM(**ckpt["model_hparams"])
+    model = CharTransformer(**ckpt["model_hparams"])
     model.load_state_dict(ckpt["state_dict"])
     return model.to(get_device()).eval(), ckpt
 
 
 @torch.no_grad()
 def top5(model, text, vocab):
-    """Top-5 next characters (with probabilities) after the last 80 characters of text."""
-    ids = torch.tensor([encode_text(text[-WINDOW_SIZE:], vocab["stoi"])], device=get_device())
+    """Top-5 next characters (with probabilities) after the last 80 characters of text.
+    Shorter texts are padded with spaces on the left, because the model was always
+    trained with windows of exactly 80 characters."""
+    text = text[-WINDOW_SIZE:].rjust(WINDOW_SIZE)
+    ids = torch.tensor([encode_text(text, vocab["stoi"])], device=get_device())
     probs = model(ids).softmax(-1)[0].cpu()
     values, indices = probs.topk(5)
     return [(vocab["itos"][i], p.item()) for p, i in zip(values, indices)]

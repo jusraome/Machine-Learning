@@ -5,7 +5,7 @@
 - Same metrics as Workshop 1: accuracy, precision, recall, F1 (macro and
   weighted) and macro one-vs-rest AUC-ROC.
 - Comparison table (reports/results_comparison.csv): majority-class predictor,
-  Workshop 1 baselines and the two LSTM variants. The Workshop 1 baselines were
+  Workshop 1 baselines and the Transformer. The Workshop 1 baselines were
   scored on a 10,000-row test sample (test.sample(n=10000, random_state=42)),
   so every model in the table is evaluated on those same rows.
 - The selected model (model_best.pt) is also evaluated on the full test split.
@@ -22,18 +22,16 @@ import pandas as pd
 import torch
 from sklearn.metrics import confusion_matrix, recall_score
 
-from src.model import BEST_CHECKPOINT, SEED, CharLSTM, get_device, load_split, read_vocab, set_seeds
-from src.train import CHECKPOINTS_DIR, FIGURES_DIR, REPORTS_DIR, compute_metrics, load_encoded, predict
+from src.model import BEST_CHECKPOINT, SEED, CharTransformer, get_device, load_split, read_vocab, set_seeds
+from src.train import FIGURES_DIR, REPORTS_DIR, compute_metrics, load_encoded, predict
 
 METRICS = ["accuracy", "precision_macro", "precision_weighted", "recall_macro",
            "recall_weighted", "f1_macro", "f1_weighted", "auc_roc_ovr_macro"]
-VARIANTS = {"lstm_noweights": "LSTM without class weights",
-            "lstm_weighted": "LSTM with class weights"}
 
 
 def load_model(path, device):
     ckpt = torch.load(path, map_location="cpu", weights_only=False)
-    model = CharLSTM(**ckpt["model_hparams"])
+    model = CharTransformer(**ckpt["model_hparams"])
     model.load_state_dict(ckpt["state_dict"])
     return model.to(device).eval(), ckpt
 
@@ -61,15 +59,10 @@ def main():
     # 2. Workshop 1 baselines (copied from the output of Workshop_1/src/baselines.py)
     rows += pd.read_csv(REPORTS_DIR / "baselines_workshop1.csv").to_dict("records")
 
-    # 3. the two LSTM variants
-    best_ckpt = torch.load(BEST_CHECKPOINT, weights_only=False)
-    for run_name, label in VARIANTS.items():
-        model, _ = load_model(CHECKPOINTS_DIR / f"{run_name}.pt", device)
-        logits = predict(model, x_test, device)
-        if run_name == best_ckpt["run_name"]:
-            label += " (selected)"
-            best_logits = logits
-        rows.append({"model": label, **compute_metrics(y_true[sample], logits[sample])})
+    # 3. the Workshop 2 Transformer (checkpoints/model_best.pt)
+    model, best_ckpt = load_model(BEST_CHECKPOINT, device)
+    best_logits = predict(model, x_test, device)
+    rows.append({"model": "Transformer (W2)", **compute_metrics(y_true[sample], best_logits[sample])})
 
     table = pd.DataFrame(rows)[["model"] + METRICS]
     table.to_csv(REPORTS_DIR / "results_comparison.csv", index=False)

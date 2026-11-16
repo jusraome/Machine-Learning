@@ -86,12 +86,12 @@ def main():
     table.to_csv(REPORTS_DIR / "test_comparison.csv", index=False)
     print("\n" + table.round(3).to_string(index=False))
 
-    # sample trajectories: same 3 test contexts, greedy LSTM vs agent
+    # sample trajectories: same 3 test contexts, greedy Transformer vs agent
     lines = []
     for i in range(3):
         lines.append(f"Context: ...{env.contexts[i][-60:]!r}")
-        lines.append(f"  greedy LSTM (W2): {results['greedy LSTM (W2)']['texts'][i]!r}")
-        lines.append(f"  DQN agent (W3):   {results['DQN agent (W3)']['texts'][i]!r}\n")
+        lines.append(f"  greedy Transformer (W2): {results['greedy Transformer (W2)']['texts'][i]!r}")
+        lines.append(f"  DQN agent (W3):          {results['DQN agent (W3)']['texts'][i]!r}\n")
     (REPORTS_DIR / "trajectories.txt").write_text("\n".join(lines), encoding="utf-8")
     print("\n" + "\n".join(lines))
     plot_trajectories([trajectory(env, agent, i) for i in range(3)])
