@@ -1,0 +1,4 @@
+representation,dimensions,silhouette
+AE (ae_z128),128,-0.002329993760213256
+"VAE (vae_b0.5, mu)",128,-0.003357246983796358
+Transformer W2 (supervised),128,0.07506269961595535

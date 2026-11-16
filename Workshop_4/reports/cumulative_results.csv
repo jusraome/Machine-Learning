@@ -1,0 +1,11 @@
+workshop,method,task,accuracy,f1_macro,auc_roc
+W1,Majority class (space),next-character prediction (10k test rows),0.1832,0.0049153761121306,0.5
+W1,Logistic regression (W1),next-character prediction (10k test rows),0.3689,0.1082465623479666,0.8709503103522053
+W1,Naive Bayes (W1),next-character prediction (10k test rows),0.3339,0.1074472777914904,0.8487094983454265
+W1,Random forest (W1),next-character prediction (10k test rows),0.3075,0.1402295413786851,0.8196164668934419
+W2,Transformer (W2),next-character prediction (10k test rows),0.495,0.2579183000941839,0.953548758644617
+W1,Majority class (W1 baseline),anomaly detection: next char is not a space (20k test rows),,,0.5
+W4,AE trained on normal data (reconstruction error),anomaly detection: next char is not a space (20k test rows),,,0.7121547908281198
+W4,VAE trained on normal data (reconstruction error),anomaly detection: next char is not a space (20k test rows),,,0.6173980570223673
+W4,VAE trained on normal data (reconstruction error + KL),anomaly detection: next char is not a space (20k test rows),,,0.6227929550737895
+W2,"Transformer W2, supervised (1 - P(space))",anomaly detection: next char is not a space (20k test rows),,,0.9722805438566392
