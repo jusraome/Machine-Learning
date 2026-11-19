@@ -1,0 +1,26 @@
+# Workshop 5 - GANs para generación de datos sintéticos
+# y re-entrenamiento del Transformer del Workshop 2.
+#
+# Python requerido: >= 3.12
+# (los scripts usan f-strings anidadas, PEP 701).
+#
+# Instalación desde PowerShell, dentro de Workshop_5:
+#   py -3.12 -m venv .venv
+#   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+#
+# Nota GPU: si tienes CUDA, instala torch siguiendo
+# https://pytorch.org/get-started/locally/ antes de este archivo.
+# En CPU basta con las versiones de abajo.
+
+torch>=2.0
+numpy>=1.24
+pandas>=2.0
+pyarrow>=12.0
+scikit-learn>=1.3
+
+# Versiones verificadas en este repo (entorno del Workshop 2, Python 3.14):
+# torch==2.14.1+cpu
+# numpy==2.5.3
+# pandas==3.0.6
+# pyarrow==26.0.1
+# scikit-learn==1.9.1
