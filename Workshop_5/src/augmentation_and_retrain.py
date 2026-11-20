@@ -9,6 +9,15 @@ from sklearn.metrics import accuracy_score, f1_score
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
 
+from src.device import (
+    DEVICE_CHOICES,
+    cpu_state_dict,
+    dataloader_kwargs,
+    is_directml,
+    print_device_info,
+    resolve_device,
+    seed_everything,
+)
 from src.gan import Generator, SEQUENCE_LENGTH, load_vocab
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,15 +37,10 @@ AUGMENTED_DATA_DIR = ROOT / "data" / "augmented"
 
 WINDOW_SIZE = 80 
 UNK_IDX = 0
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 SEED = 42
 
 def set_seeds(seed): 
-    random.seed(seed)
-    np.random.seed(seed=seed)
-    torch.manual_seed(seed=seed)
-    if torch.cuda.is_available(): 
-        torch.cuda.manual_seed_all(seed)
+    seed_everything(seed)
 
 def load_transformer_class(): 
 
@@ -102,14 +106,15 @@ def generate_syntethic_pairs(checkpoint_path, count, device):
     # generation of the 81 charcaters sequences, split x = 80, y = 1
     checkpoint = torch.load(
         checkpoint_path, 
-        map_location=device, 
+        map_location="cpu", 
         weights_only= False
     )
     generator = Generator(
         vocab_size=checkpoint["vocab_size"],
         noise_dim= checkpoint["noise_dim"]
-    ).to(device=device)
+    )
     generator.load_state_dict(checkpoint["generator_state_dict"])
+    generator = generator.to(device=device)
     generator.eval()
 
     all_x = []
@@ -122,6 +127,8 @@ def generate_syntethic_pairs(checkpoint_path, count, device):
         noise = torch.randn(current_batch,checkpoint["noise_dim"],device=device)
 
         probabilities = generator(noise)
+        if is_directml(device):
+            probabilities = probabilities.cpu()
 
         ids = torch.multinomial(
             probabilities.reshape(-1, checkpoint["vocab_size"]), 
@@ -196,7 +203,8 @@ def train_condition(
         batch_size=args.batch_size,
         shuffle=True,
         num_workers=0,
-        generator=loader_generator
+        generator=loader_generator,
+        **dataloader_kwargs(device),
     )
 
     best_val_f1 = -1.0
@@ -240,7 +248,7 @@ def train_condition(
             f"\n{condition} | epoch {epoch:03d}/{args.epochs}"
             f"\nloss {mean_loss:.4f}"
             f"\nval accuracy {val_metrics['accuracy']:.4f}"
-            f"\nval macro-F1 {val_metrics["f1_macro"]:.4f}"
+            f"\nval macro-F1 {val_metrics['f1_macro']:.4f}"
         )
 
         if val_metrics['f1_macro'] > best_val_f1 +1e-4: 
@@ -277,7 +285,7 @@ def train_condition(
 
     torch.save(
         {
-            "state_dict":model.state_dict(),
+            "state_dict": cpu_state_dict(model),
             "model_hparams": model_hparams,
             "train_hparams": saved_train_hparams,
             "vocab": vocab, 
@@ -316,6 +324,7 @@ def main():
     parser.add_argument("--learning-rate",type=float, default=None)
     parser.add_argument("--weight-decay", type=float, default=None)
     parser.add_argument("--seed", type=int ,default=SEED)
+    parser.add_argument("--device", default="auto", choices=DEVICE_CHOICES)
 
     args = parser.parse_args()
 
@@ -340,7 +349,8 @@ def main():
     args.learning_rate = args.learning_rate or train_hparams["lr"]
     args.weight_decay = args.weight_decay or train_hparams["weight_decay"]
 
-    device = DEVICE
+    device, device_desc = resolve_device(args.device)
+    print_device_info(device, device_desc)
 
     x_real, y_real = load_encoded_split("train", vocab["stoi"])
     x_val, y_val = load_encoded_split("val", vocab["stoi"])

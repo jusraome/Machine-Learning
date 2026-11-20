@@ -5,6 +5,13 @@ from collections import Counter
 import pandas as pd 
 import torch
 
+from src.device import (
+    DEVICE_CHOICES,
+    is_directml,
+    print_device_info,
+    resolve_device,
+    seed_everything,
+)
 from src.gan import Generator, SEQUENCE_LENGTH, loadTrainingData
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,7 +20,6 @@ REPORT_DIR  = ROOT/ "reports" / "metrics"
 SAMPLE_DIR = ROOT/ "reports" / "generated_samples"
 SEED = 42
 
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 def sample_sequences(generator,count, noise_dim, device, batch_size =128):
     #Generate all the ids by sampling per position 
     all_ids = [] 
@@ -26,6 +32,8 @@ def sample_sequences(generator,count, noise_dim, device, batch_size =128):
             current_batch = min(batch_size, remaining)
             noise = torch.randn(current_batch, noise_dim, device=device)
             probabilities = generator(noise)
+            if is_directml(device):
+                probabilities = probabilities.cpu()
 
             ids = torch.multinomial(
                 probabilities.reshape(-1, probabilities.size(-1)), 
@@ -82,16 +90,17 @@ def get_metrics(sequences, real_sequences, unk_token = "<UNK>"):
         "unknown_charater_ratio": (unknown_count / total_characters if total_characters else 0)
     }
 def load_generator(checkpoint, device): 
-    checkpoint =torch.load(
+    checkpoint = torch.load(
         checkpoint, 
-        map_location=device, 
+        map_location="cpu", 
         weights_only= False
     )
     generator = Generator( 
         vocab_size=checkpoint["vocab_size"],
         noise_dim=checkpoint["noise_dim"], 
-    ).to(device)
+    )
     generator.load_state_dict(checkpoint["generator_state_dict"])
+    generator = generator.to(device)
     return generator, checkpoint
 
 def ids_to_text(sequence_ids,itos): 
@@ -104,13 +113,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--num-samples", type=int ,default=1000)
     parser.add_argument("--seed",type= int, default=SEED)
+    parser.add_argument("--device", default="auto", choices=DEVICE_CHOICES)
     args = parser.parse_args()
 
     if args.num_samples<1: 
         raise ValueError("number of samples must be positive")
 
-    torch.manual_seed(seed=args.seed)
-    device = DEVICE
+    seed_everything(args.seed)
+    device, device_desc = resolve_device(args.device)
+    print_device_info(device, device_desc)
 
     dataset, vocab = loadTrainingData()
     real_count = min(args.num_samples,len(dataset))
@@ -165,7 +176,7 @@ def main():
     results = pd.DataFrame(rows)
     results.to_csv(REPORT_DIR / "gan_quality.csv", index=False)
 
-    print(f"\n resume saved on {REPORT_DIR/ 'gan.quality.csv'}")
+    print(f"\n resume saved on {REPORT_DIR / 'gan_quality.csv'}")
     print(results.round(4).to_string(index=False))
 
 if __name__ =="__main__": 

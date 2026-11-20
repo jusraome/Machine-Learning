@@ -7,16 +7,25 @@ from torch import nn
 from torch.utils.data import DataLoader
 import torch.nn.functional as F 
 
-from src.gan import Discriminator, Generator,loadTrainingData
+from src.device import (
+    DEVICE_CHOICES,
+    cpu_state_dict,
+    dataloader_kwargs,
+    print_device_info,
+    resolve_device,
+    seed_everything,
+)
+from src.gan import Discriminator, Generator, loadTrainingData
 
 ROOT = Path(__file__).resolve().parents[1]
 CHECKPOINT_DIR = ROOT / "checkpoints"
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-SEED = 42 
+SEED = 42
 
 def train(args): 
 
-    torch.manual_seed(args.seed)
+    seed_everything(args.seed)
+    device, device_desc = resolve_device(args.device)
+    print_device_info(device, device_desc)
     dataset, vocab = loadTrainingData()
 
     loader = DataLoader(
@@ -24,17 +33,18 @@ def train(args):
         batch_size= args.batch_size, 
         shuffle=True, 
         num_workers=0,
-        drop_last=True
+        drop_last=True,
+        **dataloader_kwargs(device),
     )
 
     vocab_size = vocab["size"]
     generator = Generator(
         vocab_size=vocab_size, 
         noise_dim=args.noise_dim,
-    ).to(DEVICE)
+    ).to(device)
     discriminator = Discriminator(
         vocab_size=vocab_size
-    ).to(DEVICE)
+    ).to(device)
 
     optimizer_ge= torch.optim.Adam(
         params=generator.parameters(),
@@ -61,14 +71,14 @@ def train(args):
             if args.max_batches and batch_idx > args.max_batches: 
                 break
 
-            ids = ids.to(DEVICE)
+            ids = ids.to(device, non_blocking=(device.type == "cuda"))
 
             real = F.one_hot(ids,num_classes=vocab_size).float()
             batch_size = real.size(0)
 
             #! Discriminator update 
 
-            noise = torch.randn(batch_size,args.noise_dim, device=DEVICE) # tensor size
+            noise = torch.randn(batch_size,args.noise_dim, device=device) # tensor size
             fake= generator(noise)
 
             real_logits = discriminator(real)
@@ -88,7 +98,7 @@ def train(args):
 
             #! Generator update 
 
-            noise = torch.randn(batch_size, args.noise_dim, device = DEVICE) 
+            noise = torch.randn(batch_size, args.noise_dim, device = device) 
             generated = generator(noise)
             generated_logits = discriminator(generated)
 
@@ -119,8 +129,8 @@ def train(args):
         torch.save( 
             {
                 "epoch": epoch, 
-                "generator_state_dict" : generator.state_dict(), 
-                "discriminator_state_dict" : discriminator.state_dict(), 
+                "generator_state_dict" : cpu_state_dict(generator), 
+                "discriminator_state_dict" : cpu_state_dict(discriminator), 
                 "vocab": vocab, 
                 "noise_dim": args.noise_dim, 
                 "vocab_size": vocab_size 
@@ -135,6 +145,7 @@ def main ():
     parser.add_argument("--noise-dim", type=int, default=128)
     parser.add_argument("--learning-rate", type=float, default= 2e-4)
     parser.add_argument("--seed", type=int, default= 42)
+    parser.add_argument("--device", default="auto", choices=DEVICE_CHOICES)
 
     # just for testing , the 0 value = non limit
     parser.add_argument("--max-batches", type= int, default=0)

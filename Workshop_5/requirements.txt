@@ -1,26 +1,26 @@
 # Workshop 5 - GANs para generación de datos sintéticos
 # y re-entrenamiento del Transformer del Workshop 2.
 #
-# Python requerido: >= 3.12
-# (los scripts usan f-strings anidadas, PEP 701).
+# Python recomendado: 3.12 (compatible con Python >= 3.10).
 #
-# Instalación desde PowerShell, dentro de Workshop_5:
-#   py -3.12 -m venv .venv
-#   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+# === AMD Radeon RX 9060 XT (RDNA 4 / gfx1200) ===
+# IMPORTANTE: Instala PRIMERO PyTorch con soporte ROCm antes de instalar
+# este archivo (así pip detectará que `torch>=2.0` ya está satisfecho y
+# no lo reemplazará por la versión CPU).
 #
-# Nota GPU: si tienes CUDA, instala torch siguiendo
-# https://pytorch.org/get-started/locally/ antes de este archivo.
-# En CPU basta con las versiones de abajo.
+# Linux (Ubuntu/Debian con driver AMDGPU + ROCm instalado) y Windows 11:
+#   python -m pip install --index-url https://stable.repo.amd.com/rocm/whl-next/ "torch[device-gfx1200]"
+#   python -m pip install -r requirements.txt
+#
+# Fallback en Windows sin ROCm (DirectML; limitado para WGAN-GP):
+#   python -m pip install torch-directml
+#   python -m pip install -r requirements.txt
+#
+# Verifica la GPU antes de entrenar:
+#   python -m src.check_gpu
 
 torch>=2.0
 numpy>=1.24
 pandas>=2.0
 pyarrow>=12.0
 scikit-learn>=1.3
-
-# Versiones verificadas en este repo (entorno del Workshop 2, Python 3.14):
-# torch==2.14.1+cpu
-# numpy==2.5.3
-# pandas==3.0.6
-# pyarrow==26.0.1
-# scikit-learn==1.9.1
