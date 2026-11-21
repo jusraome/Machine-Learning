@@ -1,24 +1,96 @@
 sample 1:
-.c5F-}wpcmD7cLwc4Gs}mBXA32L[K.d(u.']t] lK5kK")MWONed4NF4J!,2y.Z.FN2)S:MajsJYYfiYn
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
 
 sample 2:
-D7MBvlsenS-akyMVaR;kKokP�IvSIWMT&m?RX2M-eJ ]6F4n5(1Z)]kqhPpvpAo1I4OP](4 pHn"un xb
+ a  ah t   e   ise te   a se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
 
 sample 3:
-zGXY"AJ�)QbfgKi]s6yityQar4QJS2jlm 4H}X[i.uZ!6T4zo(WwsGzU;?sox.)SLSex.T!k:"I-bR(K"
+ a  ah t   e   ise t    a se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
 
 sample 4:
-pMWdn6AGar�"GJGov'XKYSQEG'-}zjAomIv'p4}Gy kVbV C}5U)I,qyb[!JLdfWqK:&mJ]b3[5I5:)"U
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
 
 sample 5:
-eA:VJmqU.DPQ)h]4z}knk7zvCDpoO!-Ub:JS&GmhDZQ;xq7VV?S]FbF)hJ7Y}q5h,hfK2XFhcFQxT&ly2
+ a  ah t   e   ise te   o se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
 
 sample 6:
-CN&xKdP!;o}Or(Ofhq7Kc4vVPPWWN&.d1evu&Vz!aN?2,&YHSX;sg?kE6gkn7(s!b[q3PYcgDZA[1  pJ
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
 
 sample 7:
-BtKIz]JufT6MP3Lb7sLolL}yWv'MJYz(TuMgKSMou}nw)JUGyGvWA;'I(D2RZFi2B ED!7Fx,LkdeVz?z
+ a  ah t   e   ise t    a se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
 
 sample 8:
-qEY!OY4Xo&JeVH(e544kk2AkI"iZnpsErIN,EmcdX?47BX4B"&5(X7RLag?elw X!YMp'YFAd"!:5!ia7
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 9:
+ a  a  t   e   ise te   oose e  rti thet  eds   eaa e t ralrtei  n eee eo ts   et
+
+sample 10:
+ia  a  t h e  tise te   oose e  rti thet  eds  oeaa e t ralrtee  n eee eo ts   et
+
+sample 11:
+ a  a  t h e  tise te   oose e  rti thet  eds  oeaa e t ralrtee  n eee eo ts   et
+
+sample 12:
+ia  a  r h e  tise te   oose e rrtr thet  eds  oera e t ralrtee  n eee eo ts   eo
+
+sample 13:
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 14:
+ia ma  r h    tise te   oosn eerrtrathet  eds  oera e t ralrtee  n eee eo tee  eo
+
+sample 15:
+ a  ah t   e   ise te   o se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 16:
+ a  a  t h e  tise te   oose e  rti thet  eds  oeaa e t ralrtee  n eee eo ts   et
+
+sample 17:
+ia  a  t h e  tise te   oose e  rti thet  eds  oeaa e t ralrtee  n eee eo ts   et
+
+sample 18:
+ia  a  t h e  tise te   oose e  rti thet  eds  oeaa e t ralrtee  n eee eo ts   et
+
+sample 19:
+ia  a  r h e  tise te   oose e rrtr thet  eds  oera e t ralrtee  n eee eo ts   et
+
+sample 20:
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 21:
+ a  ah t   e   ise te   o se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 22:
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 23:
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 24:
+ a  a  t   e   ise te   oose e  rti thet  eds   eaa e t ralrtei  n eee eo ts   et
+
+sample 25:
+ a  ah t   e   ise t    a he e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 26:
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 27:
+ a  ah t   e   ise te   o se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 28:
+ a  a  t   e   ise te   oose e  rti thet  eds   eaa e t ralrtei  n eee eo ts   et
+
+sample 29:
+ a  ah t   e   ise te   a se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 30:
+ a  ah t   e   ise te   oose e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 31:
+ a  ah t   e   ise te   o se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
+
+sample 32:
+ a  ah t   e   ise te   o se e  rti t et  eds   eaa e t ralrtei  n  ee eo ts   et
 

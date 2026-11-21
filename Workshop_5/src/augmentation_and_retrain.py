@@ -1,5 +1,6 @@
 import argparse
 import importlib.util
+import math
 from pathlib import Path
 import random
 import numpy as np
@@ -14,6 +15,7 @@ from src.device import (
     cpu_state_dict,
     dataloader_kwargs,
     is_directml,
+    is_rocm_build,
     print_device_info,
     resolve_device,
     seed_everything,
@@ -186,10 +188,12 @@ def train_condition(
         weights = None
 
     criterion = nn.CrossEntropyLoss(weight=weights)
+    use_foreach = None if not is_rocm_build() else False
     optimizer = torch.optim.AdamW(
         model.parameters(),
         lr=args.learning_rate, 
-        weight_decay= args.weight_decay
+        weight_decay= args.weight_decay,
+        foreach=use_foreach,
     )
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
         optimizer=optimizer,
@@ -217,6 +221,8 @@ def train_condition(
     for epoch in range(1,args.epochs +1):
         model.train()
         total_loss = 0.0 
+        batches_ok = 0
+        skipped_batches = 0
 
         for xb, yb in loader: 
             xb = xb.to(device).long()
@@ -224,18 +230,50 @@ def train_condition(
 
             logits = model(xb)
             loss = criterion(logits,yb)
+            if not torch.isfinite(loss):
+                skipped_batches += 1
+                continue
 
-            optimizer.zero_grad()
+            optimizer.zero_grad(set_to_none=True)
             loss.backward()
-            nn.utils.clip_grad_norm_(model.parameters(),max_norm=5.0)
+
+            if is_rocm_build():
+                # Avoid ROCm nightly _foreach_norm/vector_norm Inf/NaN glitches on gfx1200
+                total_sq = sum(
+                    p.grad.detach().pow(2).sum().item()
+                    for p in model.parameters()
+                    if p.grad is not None
+                )
+                if not math.isfinite(total_sq):
+                    optimizer.zero_grad(set_to_none=True)
+                    skipped_batches += 1
+                    continue
+                grad_norm = math.sqrt(total_sq)
+                if grad_norm > 5.0:
+                    scale = 5.0 / (grad_norm + 1e-6)
+                    for p in model.parameters():
+                        if p.grad is not None:
+                            p.grad.mul_(scale)
+            else:
+                grad_norm = nn.utils.clip_grad_norm_(
+                    model.parameters(),
+                    max_norm=5.0,
+                    foreach=use_foreach,
+                )
+                if not torch.isfinite(grad_norm):
+                    optimizer.zero_grad(set_to_none=True)
+                    skipped_batches += 1
+                    continue
+
             optimizer.step()
 
             total_loss += loss.item()
+            batches_ok += 1
 
         scheduler.step()
 
         val_metrics = evaluate(model, x_val,y_val,device=device)
-        mean_loss = total_loss /max(len(loader),1)
+        mean_loss = total_loss / max(batches_ok, 1)
         history.append({
             "condition": condition,
             "epoch": epoch,
@@ -244,11 +282,13 @@ def train_condition(
             "val_f1_macro": val_metrics["f1_macro"],
         })
 
+        skip_note = f"\nskipped {skipped_batches}/{len(loader)}" if skipped_batches else ""
         print(
             f"\n{condition} | epoch {epoch:03d}/{args.epochs}"
             f"\nloss {mean_loss:.4f}"
             f"\nval accuracy {val_metrics['accuracy']:.4f}"
             f"\nval macro-F1 {val_metrics['f1_macro']:.4f}"
+            f"{skip_note}"
         )
 
         if val_metrics['f1_macro'] > best_val_f1 +1e-4: 

@@ -1,6 +1,7 @@
 """Device selection helpers supporting AMD ROCm (HIP), NVIDIA CUDA, DirectML, and CPU."""
 from __future__ import annotations
 
+import platform
 import random
 from typing import Tuple
 
@@ -105,4 +106,5 @@ def cpu_state_dict(module: torch.nn.Module) -> dict:
 
 def dataloader_kwargs(device: torch.device) -> dict:
     """Extra DataLoader kwargs safe for ROCm, CUDA, DirectML, and CPU."""
-    return {"pin_memory": device.type == "cuda"}
+    use_pin = device.type == "cuda" and not (is_rocm_build() and platform.system() == "Windows")
+    return {"pin_memory": use_pin}

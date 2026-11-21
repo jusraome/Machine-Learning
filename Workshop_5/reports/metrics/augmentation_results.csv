@@ -1,4 +1,4 @@
 condition,train_rows,best_epoch,validation_accuracy,validation_f1_macro,test_accuracy,test_f1_macro,checkpoint
-real_only,64,1,0.21875,0.021671826625386997,0.21875,0.02456140350877193,/home/juanest/Escritorio/machineLearningWorkshop/Workshop_5/checkpoints/transformer_real_only.pt
-vanilla,68,1,0.0625,0.015873015873015872,0.09375,0.02,/home/juanest/Escritorio/machineLearningWorkshop/Workshop_5/checkpoints/transformer_vanilla.pt
-wgan_gp,68,1,0.03125,0.010101010101010102,0.09375,0.02072336265884653,/home/juanest/Escritorio/machineLearningWorkshop/Workshop_5/checkpoints/transformer_wgan_gp.pt
+real_only,1000000,8,0.4910855465119071,0.21555681610074254,0.4929375944680151,0.2284380557316563,C:\Users\Ruulitos\Documents\Marliton\MachineLearning2\Machine-Learning\Workshop_5\checkpoints\transformer_real_only.pt
+vanilla,1001000,8,0.48897269412688776,0.21404505511841274,0.4913671364591448,0.22874020268924714,C:\Users\Ruulitos\Documents\Marliton\MachineLearning2\Machine-Learning\Workshop_5\checkpoints\transformer_vanilla.pt
+wgan_gp,1001000,8,0.48557017859776574,0.20440049580849629,0.4875077203839863,0.2196000048753177,C:\Users\Ruulitos\Documents\Marliton\MachineLearning2\Machine-Learning\Workshop_5\checkpoints\transformer_wgan_gp.pt
